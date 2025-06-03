@@ -22,10 +22,10 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'provider_name', // Tambahkan ini
-        'provider_id',   // Tambahkan ini
-        'avatar',        // Tambahkan ini
-        'email_verified_at', // Pastikan ini ada
+      //  'provider_name', // Tambahkan ini
+      //  'provider_id',   // Tambahkan ini
+      //  'avatar',        // Tambahkan ini
+      //  'email_verified_at', // Pastikan ini ada
     ];
 
     /**

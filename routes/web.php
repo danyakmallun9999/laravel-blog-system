@@ -6,8 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\WorkController as PublicWorkController; // Alias untuk controller publik
 use App\Http\Controllers\PostController as PublicPostController; // Alias untuk controller publik
 use App\Http\Controllers\ContactController;
-use App\Http\Controllers\ProfileController; 
-// use App\Http\Controllers\Auth\SocialiteController;
+use App\Http\Controllers\ProfileController;
 
 // Admin Controllers
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
@@ -56,10 +55,4 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-// Fitur Login Dengan Akun Google ( Hanya iseng )
-// Route::get('/auth/google/redirect', [SocialiteController::class, 'redirectToGoogle'])->name('auth.google.redirect');
-// Route::get('/auth/google/callback', [SocialiteController::class, 'handleGoogleCallback'])->name('auth.google.callback');
-
-
-// Route autentikasi bawaan Breeze (biasanya ada di file auth.php yang di-include)
 require __DIR__.'/auth.php';
