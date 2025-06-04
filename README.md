@@ -51,7 +51,7 @@ Aplikasi ini adalah website portfolio pribadi yang terintegrasi dengan sistem bl
 1. **Clone repositori**
 
 ```bash
-git clone https://github.com/NAMA_USERNAME/NAMA_REPOSITORI.git
+git clone https://github.com/danyakmallun9999/portfolio-blog.git
 cd NAMA_REPOSITORI
 ```
 
