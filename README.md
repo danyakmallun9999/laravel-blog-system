@@ -52,7 +52,7 @@ Aplikasi ini adalah website portfolio pribadi yang terintegrasi dengan sistem bl
 
 ```bash
 git clone https://github.com/danyakmallun9999/portfolio-blog.git
-cd NAMA_REPOSITORI
+cd portfolio-blog
 ```
 
 2. **Install dependensi PHP**
@@ -155,4 +155,4 @@ Gunakan database testing terpisah (SQLite in-memory).
 
 ## Lisensi
 
-Proyek ini dibuat untuk portfolio pribadi. Tambahkan lisensi jika diperlukan (misal: MIT License).
+Proyek ini dibuat untuk portfolio pribadi. 
