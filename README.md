@@ -7,55 +7,152 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
+# Portfolio & Blog Pribadi dengan Laravel
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Aplikasi ini adalah website portfolio pribadi yang terintegrasi dengan sistem blog, dibangun menggunakan framework Laravel. Proyek ini dirancang untuk menampilkan karya-karya (portfolio), memungkinkan pemilik untuk menulis dan mengelola artikel blog, serta menyediakan antarmuka admin yang aman untuk manajemen konten.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Fitur Utama
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### Tampilan Publik:
 
-## Learning Laravel
+* **Home**: Profil singkat, daftar postingan blog terbaru, dan karya portfolio pilihan.
+* **Work**: Galeri proyek portfolio dengan gambar, tahun, kategori, dan deskripsi.
+* **Blog**: Daftar artikel blog dengan paginasi, filter berdasarkan kategori, dan halaman detail.
+* **Kontak**: Informasi kontak pemilik.
+* **404 Kustom**: Penanganan URL yang tidak ditemukan.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Area Admin:
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+* Login admin khusus.
+* Dashboard sederhana.
+* CRUD untuk Kategori Blog.
+* CRUD untuk Postingan Blog (dengan upload gambar dan editor WYSIWYG/TinyMCE).
+* CRUD untuk Proyek Portfolio (dengan upload gambar).
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Fitur Teknis:
 
-## Laravel Sponsors
+* Slug otomatis untuk postingan dan kategori.
+* Pagination di publik dan admin.
+* Styling dengan Tailwind CSS.
+* (Opsional) Login Google & TinyMCE API Key (dinonaktifkan di UI).
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## Prasyarat Sistem
 
-### Premium Partners
+* PHP >= 8.1
+* Composer
+* Node.js & NPM/Yarn
+* Database: MySQL (direkomendasikan), PostgreSQL, SQLite
+* Web server: Apache/Nginx (XAMPP, Laragon, Valet, Sail)
+* Ekstensi PHP: BCMath, Ctype, cURL, DOM, Fileinfo, JSON, Mbstring, OpenSSL, PCRE, PDO, Tokenizer, XML
+* Git
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+## Instalasi Lokal
 
-## Contributing
+1. **Clone repositori**
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```bash
+git clone https://github.com/NAMA_USERNAME/NAMA_REPOSITORI.git
+cd NAMA_REPOSITORI
+```
 
-## Code of Conduct
+2. **Install dependensi PHP**
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+```bash
+composer install
+```
 
-## Security Vulnerabilities
+3. **Salin file environment & konfigurasi**
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+```bash
+cp .env.example .env
+```
 
-## License
+Edit file `.env` untuk koneksi database dan `APP_URL`.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+4. **Generate APP\_KEY**
+
+```bash
+php artisan key:generate
+```
+
+5. **Migrasi database**
+
+```bash
+php artisan migrate
+```
+
+6. **Symbolic link untuk storage**
+
+```bash
+php artisan storage:link
+```
+
+7. **Install dependensi frontend**
+
+```bash
+npm install
+# atau
+yarn install
+```
+
+8. **Kompilasi aset frontend**
+
+```bash
+npm run dev
+```
+
+9. **Seed database (data awal)**
+
+```bash
+php artisan db:seed
+```
+
+Admin Default:
+
+* Email: `admin@example.com`
+* Password: `password`
+
+10. **Jalankan server lokal**
+
+```bash
+php artisan serve
+```
+
+Akses di `http://localhost:8000`
+
+## Struktur Direktori Penting
+
+* `app/Http/Controllers/`
+* `app/Models/`
+* `config/`
+* `resources/views/`
+* `resources/js/`
+* `resources/css/`
+* `routes/`
+* `database/migrations/`
+* `database/seeders/`
+* `public/`
+* `.env`
+* `composer.json`
+* `package.json`
+* `tailwind.config.js`
+* `vite.config.js`
+
+## Fitur Dinonaktifkan
+
+* Registrasi publik
+* Login Google (aktifkan kembali di `.env`, `routes/web.php`, dan UI)
+
+## Menjalankan Tes
+
+```bash
+php artisan test
+# atau
+./vendor/bin/phpunit
+```
+
+Gunakan database testing terpisah (SQLite in-memory).
+
+## Lisensi
+
+Proyek ini dibuat untuk portfolio pribadi. Tambahkan lisensi jika diperlukan (misal: MIT License).
