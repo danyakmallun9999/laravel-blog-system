@@ -6,7 +6,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <title>{{ config('app.name', 'Laravel') }}</title>
-
+        <link rel="icon" type="image/png" href="{{ asset('images/profile.jpg') }}">
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=Inter:300,400,500,600,700&display=swap" rel="stylesheet" />
 
@@ -18,7 +18,7 @@
             body { font-family: 'Inter', sans-serif; }
         </style>
     </head>
-    <body class="font-sans text-slate-900 antialiased bg-slate-100">
+    <body class="font-sans text-slate-900 antialiased bg-white">
         <div class="min-h-screen flex">
             <div class="w-full lg:w-1/2 flex items-center justify-center px-6 sm:px-8 py-12 bg-white shadow-2xl lg:shadow-none z-20">
                 <div class="w-full max-w-md">
