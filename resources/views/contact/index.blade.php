@@ -1,5 +1,5 @@
 <x-public-layout>
-    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-8">
         <header class="text-center mb-12 md:mb-16">
             <h1 class="text-4xl sm:text-5xl font-bold tracking-tight text-slate-900"> 
                 Hubungi Saya

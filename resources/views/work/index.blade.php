@@ -1,6 +1,6 @@
 <x-public-layout>
-    <div class="max-w-4xl mx-auto px-6 py-16">
-        <h1 class="text-5xl font-bold text-gray-800 mb-16">Work</h1>
+    <div class="max-w-4xl mx-auto px-6 py-8">
+        <h1 class="text-5xl font-bold text-gray-800 mb-8">Work</h1>
         
         @if($works->count() > 0)
             <div class="space-y-16">
