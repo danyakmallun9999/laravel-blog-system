@@ -1,8 +1,7 @@
 <?php
-
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller; // Penting!
+use App\Http\Controllers\Controller;
 use App\Models\Work;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -27,8 +26,8 @@ class WorkController extends Controller
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'required|string',
-            'year' => 'required|digits:4|integer|min:1900|max:'.(date('Y')+5), // Tahun berupa 4 digit
-            'category' => 'required|string|max:255', // Kategori project (sementara string)
+            'year' => 'required|digits:4|integer|min:1900|max:'.(date('Y')+5),
+            'category' => 'required|string|max:255',
             'project_url' => 'nullable|url',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
         ]);

@@ -1,8 +1,7 @@
 <?php
-
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller; // Penting!
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use App\Models\Post;
@@ -18,7 +17,7 @@ class DashboardController extends Controller
             'total_posts' => Post::count(),
             'total_works' => Work::count(),
             'total_categories' => Category::count(),
-            'total_users' => User::count(), // Jumlah user terdaftar
+            'total_users' => User::count(),
         ];
         return view('admin.dashboard', compact('stats'));
     }

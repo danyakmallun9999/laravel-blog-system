@@ -1,13 +1,12 @@
 <?php
-
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller; // Penting!
+use App\Http\Controllers\Controller;
 use App\Models\Post;
 use App\Models\Category;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth; // Untuk mendapatkan user_id
-use Illuminate\Support\Facades\Storage; // Untuk file uploads
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -33,14 +32,14 @@ class PostController extends Controller
             // 'slug' => 'nullable|string|max:255|unique:posts,slug', // Slug otomatis
             'content' => 'required|string',
             'category_id' => 'required|exists:categories,id',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048', // Validasi gambar
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
         ]);
 
         $validated['user_id'] = Auth::id();
-        // Slug akan dibuat otomatis oleh model event
+    
 
         if ($request->hasFile('image')) {
-            $path = $request->file('image')->store('posts_images', 'public'); // Simpan di storage/app/public/posts_images
+            $path = $request->file('image')->store('posts_images', 'public');
             $validated['image'] = $path;
         }
 
@@ -51,7 +50,7 @@ class PostController extends Controller
 
     public function show(Post $post): View
     {
-        $post->load('category', 'user'); // Eager load
+        $post->load('category', 'user');
         return view('admin.posts.show', compact('post'));
     }
 
@@ -72,7 +71,6 @@ class PostController extends Controller
         ]);
 
         if ($request->hasFile('image')) {
-            // Hapus gambar lama jika ada dan bukan gambar default
             if ($post->image && Storage::disk('public')->exists($post->image)) {
                 Storage::disk('public')->delete($post->image);
             }
@@ -87,7 +85,6 @@ class PostController extends Controller
 
     public function destroy(Post $post): RedirectResponse
     {
-        // Hapus gambar terkait jika ada
         if ($post->image && Storage::disk('public')->exists($post->image)) {
             Storage::disk('public')->delete($post->image);
         }

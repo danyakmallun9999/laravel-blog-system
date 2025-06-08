@@ -1,9 +1,8 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Models\Post;
-use App\Models\Category; // Import Category
+use App\Models\Category; 
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -13,7 +12,6 @@ class PostController extends Controller
     {
         $postsQuery = Post::with('category', 'user')->latest();
 
-        // Fitur filter berdasarkan kategori (opsional)
         if ($request->has('category')) {
             $categorySlug = $request->query('category');
             $category = Category::where('slug', $categorySlug)->first();
@@ -22,15 +20,14 @@ class PostController extends Controller
             }
         }
 
-        $posts = $postsQuery->paginate(3); // 10 posts per halaman
-        $categories = Category::orderBy('name')->get(); // Untuk filter
+        $posts = $postsQuery->paginate(3);
+        $categories = Category::orderBy('name')->get();
 
         return view('blog.index', compact('posts', 'categories'));
     }
 
-    public function show(Post $post): View // Route model binding dengan slug
+    public function show(Post $post): View
     {
-        // Load relasi untuk ditampilkan di view
         $post->load('category', 'user');
         return view('blog.show', compact('post'));
     }

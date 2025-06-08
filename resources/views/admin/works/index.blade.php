@@ -2,32 +2,31 @@
 <x-app-layout>
     <x-slot name="header">
         <div class="flex justify-between items-center gap-4">
-            <h2 class="font-semibold text-2xl text-slate-800 leading-tight"> {{-- Ukuran font disesuaikan --}}
+            <h2 class="font-semibold text-2xl text-slate-800 leading-tight">
                 {{ __('Portfolio Works') }}
             </h2>
             <a href="{{ route('admin.works.create') }}" 
                class="inline-flex items-center px-4 py-2 bg-slate-800 dark:bg-slate-200 border border-transparent rounded-lg font-semibold text-xs text-white dark:text-slate-800 uppercase tracking-widest hover:bg-slate-700 dark:hover:bg-white focus:bg-slate-700 dark:focus:bg-white active:bg-slate-900 dark:active:bg-slate-300 focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2 dark:focus:ring-offset-slate-800 transition ease-in-out duration-150 group">
-                <i class="fas fa-plus transition-transform group-hover:scale-110"></i>
-                {{-- Teks tombol disembunyikan di layar kecil untuk menghemat ruang --}}
+                <i class="fas fa-plus transition-transform group-hover:scale-110"></i
                 <span class="hidden sm:inline ml-2">Add New Category</span>
             </a>
         </div>
     </x-slot>
 
-    <div class="py-2"> {{-- Padding disesuaikan --}}
+    <div class="py-2">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             @if(session('success'))
-                <div class="mb-6 p-4 bg-green-100 text-green-700 border border-green-300 rounded-xl shadow-sm"> {{-- Style notifikasi disesuaikan --}}
+                <div class="mb-6 p-4 bg-green-100 text-green-700 border border-green-300 rounded-xl shadow-sm">
                     {{ session('success') }}
                 </div>
             @endif
 
-            <div class="bg-white overflow-hidden shadow-sm rounded-xl border border-slate-200"> {{-- Style kartu disesuaikan --}}
-                <div class="p-6 text-slate-700"> {{-- Warna teks disesuaikan --}}
+            <div class="bg-white overflow-hidden shadow-sm rounded-xl border border-slate-200"
+                <div class="p-6 text-slate-700"
                     @if($works->count() > 0)
                     <div class="overflow-x-auto">
-                        <table class="min-w-full divide-y divide-slate-200"> {{-- Warna border disesuaikan --}}
-                            <thead class="bg-slate-50"> {{-- Warna bg disesuaikan --}}
+                        <table class="min-w-full divide-y divide-slate-200">
+                            <thead class="bg-slate-50"
                                 <tr>
                                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Image</th>
                                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Title</th>
@@ -38,26 +37,26 @@
                                     </th>
                                 </tr>
                             </thead>
-                            <tbody class="bg-white divide-y divide-slate-200"> {{-- Warna border disesuaikan --}}
+                            <tbody class="bg-white divide-y divide-slate-200"> 
                                 @foreach($works as $work)
                                 <tr>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         @if($work->image)
-                                            <img src="{{ asset('storage/' . $work->image) }}" alt="{{ $work->title }}" class="h-10 w-16 object-cover rounded-md shadow-sm"> {{-- Style gambar disesuaikan --}}
+                                            <img src="{{ asset('storage/' . $work->image) }}" alt="{{ $work->title }}" class="h-10 w-16 object-cover rounded-md shadow-sm"> 
                                         @else
-                                             <span class="text-xs text-slate-400 italic">No Image</span> {{-- Style teks disesuaikan --}}
+                                             <span class="text-xs text-slate-400 italic">No Image</span> 
                                         @endif
                                     </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-slate-900">{{ Str::limit($work->title, 40) }}</td> {{-- Warna teks disesuaikan --}}
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-600">{{ $work->year }}</td> {{-- Warna teks disesuaikan --}}
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-600">{{ $work->category }}</td> {{-- Warna teks disesuaikan --}}
-                                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium space-x-3"> {{-- space-x-3 untuk jarak --}}
-                                        <a href="{{ route('admin.works.show', $work) }}" class="text-sky-600 hover:text-sky-800 font-medium transition-colors">View</a> {{-- Style link disesuaikan --}}
-                                        <a href="{{ route('admin.works.edit', $work) }}" class="text-amber-600 hover:text-amber-800 font-medium transition-colors">Edit</a> {{-- Style link disesuaikan --}}
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-slate-900">{{ Str::limit($work->title, 40) }}</td> 
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-600">{{ $work->year }}</td> 
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-600">{{ $work->category }}</td> 
+                                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium space-x-3"> 
+                                        <a href="{{ route('admin.works.show', $work) }}" class="text-sky-600 hover:text-sky-800 font-medium transition-colors">View</a> {{
+                                        <a href="{{ route('admin.works.edit', $work) }}" class="text-amber-600 hover:text-amber-800 font-medium transition-colors">Edit</a> {{--
                                         <form action="{{ route('admin.works.destroy', $work) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this work?');" class="inline">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="text-red-600 hover:text-red-800 font-medium transition-colors">Delete</button> {{-- Style tombol disesuaikan --}}
+                                            <button type="submit" class="text-red-600 hover:text-red-800 font-medium transition-colors">Delete</button> 
                                         </form>
                                     </td>
                                 </tr>

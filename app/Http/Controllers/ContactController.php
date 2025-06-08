@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -18,7 +17,6 @@ class ContactController extends Controller
                 ['name' => 'Twitter', 'url' => 'https://twitter.com/danyakmallun', 'icon' => 'fab fa-twitter'],
             ]
         ];
-        // Data ini bisa juga dari database atau config
         return view('contact.index', compact('contactInfo'));
     }
 

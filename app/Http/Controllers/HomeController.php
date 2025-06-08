@@ -1,11 +1,10 @@
 <?php
-
 namespace App\Http\Controllers;
 
-use App\Models\Post; // Import model Post
-use App\Models\Work; // Import model Work
+use App\Models\Post; 
+use App\Models\Work;
 use Illuminate\Http\Request;
-use Illuminate\View\View; // Import View
+use Illuminate\View\View;
 
 class HomeController extends Controller
 {
@@ -27,8 +26,8 @@ class HomeController extends Controller
             'name' => 'Dany Akmallun Niam',
             'profession' => 'Web Developer | Prompt Engineer | Crypto Enthusiast',
             'bio' => 'I build web solutions, design intelligent interactions with AI, and actively explore the world of cryptocurrency. My expertise includes web development (HTML, CSS, JavaScript), prompt engineering for AI, as well as an understanding of blockchain technology and digital assets',
-            'profile_image_url' => 'images/profile.jpg', // Ganti dengan path gambar profilmu di public/images
-            'resume_url' => 'resume/my_resume.pdf', // Ganti dengan path resume di public/resume
+            'profile_image_url' => 'images/profile.jpg',
+            'resume_url' => 'resume/my_resume.pdf', 
         ];
 
         return view('home', compact('recentPosts', 'featuredWorks', 'profile'));

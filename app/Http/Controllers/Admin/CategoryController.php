@@ -1,11 +1,10 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-
-use App\Http\Controllers\Controller; // Penting!
+use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str; // Untuk slug manual jika model event tidak dipakai
+use Illuminate\Support\Str;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
 
@@ -29,13 +28,13 @@ class CategoryController extends Controller
             // 'slug' => 'nullable|string|max:255|unique:categories,slug', // Slug dibuat otomatis oleh model
         ]);
 
-        // Slug akan dibuat otomatis oleh model event 'creating' atau 'updating'
+    
         Category::create($validated);
 
         return redirect()->route('admin.categories.index')->with('success', 'Kategori berhasil ditambahkan.');
     }
 
-    // 'show' method tidak kita gunakan berdasarkan route.
+
 
     public function edit(Category $category): View
     {
@@ -56,7 +55,7 @@ class CategoryController extends Controller
 
     public function destroy(Category $category): RedirectResponse
     {
-        // Cek jika ada post yang menggunakan kategori ini (opsional, tergantung kebutuhan)
+    
         if ($category->posts()->count() > 0) {
             return redirect()->route('admin.categories.index')->with('error', 'Kategori tidak bisa dihapus karena masih digunakan oleh post.');
         }

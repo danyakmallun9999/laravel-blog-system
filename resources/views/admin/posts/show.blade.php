@@ -13,7 +13,7 @@
         </div>
     </x-slot>
 
-    <div class="py-2"> {{-- Disesuaikan dari py-12 ke py-8 --}}
+    <div class="py-2">
                    <a href="{{ route('admin.posts.index') }}" 
                class="inline-flex items-center text-gray-600 hover:text-gray-800 font-medium transition-colors duration-300 mb-3">
                 <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -21,7 +21,7 @@
                 </svg>
                 Back to List
             </a>
-        <div class="max-w-4xl mx-auto sm:px-6 lg:px-8"> {{-- max-w-4xl dipertahankan untuk readability --}}
+        <div class="max-w-4xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm rounded-xl border border-slate-200">
                 <div class="p-6 md:p-8 text-slate-700">
                     @if($post->image)
