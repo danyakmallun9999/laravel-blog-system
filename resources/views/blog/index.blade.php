@@ -2,7 +2,6 @@
     <div class="max-w-4xl mx-auto px-4 sm:px-6 py-8 sm:py-8">
         <h1 class="text-4xl sm:text-5xl font-bold text-gray-800 mb-8">Blog</h1>
         
-        {{-- ==================== PERBAIKAN FILTER KATEGORI ==================== --}}
         @if($categories->count() > 0)
         <div class="mb-12">
             {{-- Tampilan Dropdown untuk Mobile (terlihat di bawah breakpoint 'md') --}}
@@ -33,8 +32,6 @@
             </div>
         </div>
         @endif
-        {{-- ================== AKHIR PERBAIKAN FILTER KATEGORI ================== --}}
-
 
         @if($posts->count() > 0)
             <div class="space-y-8">
@@ -45,7 +42,6 @@
                         <div class="lg:w-1/2">
                             <a href="{{ route('blog.show', $post->slug) }}" class="block">
                                 <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-gray-100 to-gray-200 aspect-[4/3]">
-                                    {{-- Perbaikan logika gambar untuk menangani URL eksternal dan lokal --}}
                                     @if (Str::startsWith($post->image, 'http'))
                                         <img src="{{ $post->image }}" 
                                              alt="{{ $post->title }}" 

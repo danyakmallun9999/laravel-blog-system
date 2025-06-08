@@ -24,15 +24,12 @@ use App\Http\Controllers\Admin\WorkController as AdminWorkController;
 // Halaman Publik
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/work', [PublicWorkController::class, 'index'])->name('work.index');
-// Route::get('/work/{work}', [PublicWorkController::class, 'show'])->name('work.show'); // Jika ada detail work
+Route::get('/work/{work}', [PublicWorkController::class, 'show'])->name('work.show');
 Route::get('/blog', [PublicPostController::class, 'index'])->name('blog.index');
-Route::get('/blog/{post}', [PublicPostController::class, 'show'])->name('blog.show'); // Menggunakan route model binding dengan slug
+Route::get('/blog/{post}', [PublicPostController::class, 'show'])->name('blog.show');
 Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
-// Route::post('/contact', [ContactController::class, 'store'])->name('contact.store'); // Jika ada form kontak
 
-// Route bawaan Breeze untuk dashboard (yang digunakan sebagai basis admin)
 Route::get('/dashboard', function () {
-    // Arahkan ke dashboard admin jika sudah ada
     return redirect()->route('admin.dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
