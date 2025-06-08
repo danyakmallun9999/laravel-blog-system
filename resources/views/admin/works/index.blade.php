@@ -1,4 +1,3 @@
-{{-- resources/views/admin/works/index.blade.php --}}
 <x-app-layout>
     <x-slot name="header">
         <div class="flex justify-between items-center gap-4">
@@ -6,9 +5,9 @@
                 {{ __('Portfolio Works') }}
             </h2>
             <a href="{{ route('admin.works.create') }}" 
-               class="inline-flex items-center px-4 py-2 bg-slate-800 dark:bg-slate-200 border border-transparent rounded-lg font-semibold text-xs text-white dark:text-slate-800 uppercase tracking-widest hover:bg-slate-700 dark:hover:bg-white focus:bg-slate-700 dark:focus:bg-white active:bg-slate-900 dark:active:bg-slate-300 focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2 dark:focus:ring-offset-slate-800 transition ease-in-out duration-150 group">
+               class="inline-flex items-center px-4 py-2 bg-slate-800  border border-transparent rounded-lg font-semibold text-xs text-white  uppercase tracking-widest hover:bg-slate-700  focus:bg-slate-700  active:bg-slate-900focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2  transition ease-in-out duration-150 group">
                 <i class="fas fa-plus transition-transform group-hover:scale-110"></i
-                <span class="hidden sm:inline ml-2">Add New Category</span>
+                <span class="hidden sm:inline ml-2">Add New Work</span>
             </a>
         </div>
     </x-slot>
@@ -21,7 +20,7 @@
                 </div>
             @endif
 
-            <div class="bg-white overflow-hidden shadow-sm rounded-xl border border-slate-200"
+            <div class="bg-white overflow-hidden shadow-sm rounded-xl border border-slate-200">
                 <div class="p-6 text-slate-700"
                     @if($works->count() > 0)
                     <div class="overflow-x-auto">
@@ -51,8 +50,8 @@
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-600">{{ $work->year }}</td> 
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-600">{{ $work->category }}</td> 
                                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium space-x-3"> 
-                                        <a href="{{ route('admin.works.show', $work) }}" class="text-sky-600 hover:text-sky-800 font-medium transition-colors">View</a> {{
-                                        <a href="{{ route('admin.works.edit', $work) }}" class="text-amber-600 hover:text-amber-800 font-medium transition-colors">Edit</a> {{--
+                                        <a href="{{ route('admin.works.show', $work) }}" class="text-sky-600 hover:text-sky-800 font-medium transition-colors">View</a>
+                                        <a href="{{ route('admin.works.edit', $work) }}" class="text-amber-600 hover:text-amber-800 font-medium transition-colors">Edit</a>
                                         <form action="{{ route('admin.works.destroy', $work) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this work?');" class="inline">
                                             @csrf
                                             @method('DELETE')
@@ -65,12 +64,12 @@
                         </table>
                     </div>
                     @if ($works->hasPages())
-                    <div class="mt-6 p-4 bg-slate-50 rounded-xl border border-slate-200"> {{-- Style paginasi disesuaikan --}}
+                    <div class="mt-6 p-4 bg-slate-50 rounded-xl border border-slate-200"> 
                         {{ $works->links() }}
                     </div>
                     @endif
                     @else
-                    <div class="text-center py-10"> {{-- Style empty state disesuaikan --}}
+                    <div class="text-center py-10">
                         <i class="fas fa-briefcase text-slate-400 text-4xl mb-3"></i>
                         <h3 class="text-lg font-medium text-slate-700 mb-1">No Works Found</h3>
                         <p class="text-sm text-slate-500 mb-4">There are no portfolio works to display at the moment.</p>
