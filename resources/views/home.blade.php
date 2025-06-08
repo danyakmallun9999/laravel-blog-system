@@ -1,20 +1,18 @@
 <x-public-layout>
     <div class="min-h-screen bg-gray-50">
-        {{-- Section Hero/Profil - Minimalist Version --}}
-        <section class="container mx-auto px-8 md:px-16 lg:px-32 py-24">
-            {{-- ... (kode hero section tidak berubah) ... --}}
+        <section class="container mx-auto px-8 md:px-16 lg:px-32 py-16">
             <div class="max-w-4xl mx-auto text-center">
                 <div class="mb-8">
                     @if($profile['profile_image_url'] ?? false)
                     <img src="{{ asset($profile['profile_image_url']) }}" alt="{{ $profile['name'] }}"
-                        class="w-64 h-64 rounded-full object-cover mx-auto shadow-lg">
+                        class="w-64 h-64 rounded-full object-cover mx-auto">
                     @else
-                    <div class="w-32 h-32 bg-gray-200 rounded-full mx-auto flex items-center justify-center">
+                    <div class="w-24 h-24 bg-gray-200 rounded-full mx-auto flex items-center justify-center">
                         <span class="text-gray-400 text-sm">Photo</span>
                     </div>
                     @endif
                 </div>
-                <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">{{ $profile['name'] ?? 'John Doe' }}</h1>
+                <h1 class="text-3xl md:text-5xl font-bold text-gray-900 mb-4">{{ $profile['name'] ?? 'John Doe' }}</h1>
                 <p class="text-xl text-gray-600 mb-8 font-medium">{{ $profile['profession'] ?? 'Creative Technologist' }}</p>
                 <p class="text-gray-600 text-lg leading-relaxed mb-10 max-w-2xl mx-auto">{{ $profile['bio'] ?? 'Passionate about creating meaningful digital experiences through thoughtful design and innovative technology.' }}</p>
                 @if($profile['resume_url'] ?? false)
@@ -30,10 +28,8 @@
             </div>
         </section>
 
-        {{-- Section Recent Posts --}}
         @if(($recentPosts ?? collect())->count() > 0)
         <section class="bg-white py-20">
-            {{-- ... (kode recent posts tidak berubah) ... --}}
             <div class="container mx-auto px-8 md:px-16 lg:px-32">
                 <div class="flex justify-between items-center mb-12">
                     <h2 class="text-3xl font-bold text-gray-800">Recent posts</h2>
@@ -67,30 +63,26 @@
         </section>
         @else
         <section class="bg-white py-20">
-            {{-- ... (kode placeholder recent posts tidak berubah) ... --}}
         </section>
         @endif
 
-        {{-- ==================== PERBAIKAN DI SECTION FEATURED WORKS ==================== --}}
         <section class="py-20 bg-gray-50">
             <div class="container mx-auto px-8 md:px-16 lg:px-32">
                 <h2 class="text-3xl font-bold text-gray-800 mb-12 text-center">Featured works</h2>
                 
                 @if(($featuredWorks ?? collect())->count() > 0)
                     @foreach($featuredWorks->take(3) as $work)
-                    {{-- Seluruh blok sekarang menjadi sebuah link ke halaman detail --}}
                     <a href="{{ route('work.show', $work) }}" class="group block mb-12 pb-12 border-b border-gray-200 last:border-b-0 last:mb-0 last:pb-0">
                         <div class="flex flex-col md:flex-row gap-8">
                             <div class="md:w-1/3">
                                 @if($work->image)
-                                    {{-- Logika untuk menangani gambar lokal dan eksternal --}}
                                     @if(Str::startsWith($work->image, 'http'))
-                                        <img src="{{ $work->image }}" alt="{{ $work->title }}" class="w-full h-full object-cover rounded-lg  transition-transform duration-300 group-hover:scale-105">
+                                        <img src="{{ $work->image }}" alt="{{ $work->title }}" class="w-full h-48 object-cover rounded-lg  transition-transform duration-300 group-hover:scale-105">
                                     @else
-                                        <img src="{{ asset('storage/' . $work->image) }}" alt="{{ $work->title }}" class="w-full h-full object-cover rounded-lg shadow-lg transition-transform duration-300 group-hover:scale-105">
+                                        <img src="{{ asset('storage/' . $work->image) }}" alt="{{ $work->title }}" class="w-full h-48 object-cover rounded-lg transition-transform duration-300 group-hover:scale-105">
                                     @endif
                                 @else
-                                    <div class="w-full h-48 bg-gradient-to-br from-purple-600 to-blue-600 rounded-lg shadow-lg"></div>
+                                    <div class="w-full h-48 bg-gradient-to-br from-purple-600 to-blue-600 rounded-lg"></div>
                                 @endif
                             </div>
                             <div class="md:w-2/3">
@@ -102,7 +94,6 @@
                                 <p class="text-gray-700 leading-relaxed mb-4">
                                     {{ Str::limit($work->description, 150) ?? 'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.' }}
                                 </p>
-                                {{-- Mengubah link "View Project" menjadi "View Details" --}}
                                 <span class="text-red-500 font-medium group-hover:text-red-600">
                                     View Details →
                                 </span>

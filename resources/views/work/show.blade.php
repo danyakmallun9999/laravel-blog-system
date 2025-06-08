@@ -1,5 +1,5 @@
 <x-public-layout>
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 py-8 sm:py-16">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 py-8">
         <!-- Navigasi Kembali -->
         <div class="mb-8">
             <a href="{{ route('work.index') }}" 
@@ -20,7 +20,7 @@
                 </h1>
                 <!-- Meta Informasi (Tahun & Kategori) -->
                 <div class="flex items-center justify-center gap-4 text-sm text-gray-500 font-medium">
-                    <span class="inline-block px-3 py-1 bg-gray-800 text-white rounded-full text-xs font-semibold">
+                    <span class="inline-block px-3 py-1 bg-gray-800 text-white rounded-lg text-xs font-semibold">
                         {{ $work->year }}
                     </span>
                     <span>{{ $work->category }}</span>
@@ -49,7 +49,7 @@
             @if($work->project_url)
                 <div class="text-center">
                     <a href="{{ $work->project_url }}" target="_blank" rel="noopener noreferrer"
-                       class="inline-block bg-slate-800 hover:bg-slate-700 text-white font-semibold py-3 px-8 rounded-lg transition duration-300 shadow-md hover:shadow-lg">
+                       class="inline-block bg-red-500 hover:bg-slate-700 text-white font-semibold py-3 px-8 rounded-lg transition duration-300 shadow-md hover:shadow-lg">
                         View Live Project
                         <i class="fas fa-external-link-alt ml-2 text-xs"></i>
                     </a>
