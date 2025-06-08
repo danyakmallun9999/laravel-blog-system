@@ -6,7 +6,7 @@
         </h2>
     </x-slot>
 
-    <div class="py-8">
+    <div class="py-2">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-gradient-to-r from-slate-800 to-slate-700 rounded-xl shadow-lg mb-8 overflow-hidden"> 
                 <div class="px-8 py-6">

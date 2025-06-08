@@ -80,9 +80,9 @@
             @endif
 
             <!-- Article Content -->
-            <div class="prose prose-lg prose-gray max-w-none">
+            <article class="prose prose-lg prose-gray max-w-none">
                 {!! $post->content !!}
-            </div>
+            </article>
 
             <!-- Article Footer -->
             <footer class="mt-16 pt-8 border-t border-gray-200">

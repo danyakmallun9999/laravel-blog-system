@@ -3,10 +3,10 @@
         <h1 class="text-5xl font-bold text-gray-800 mb-8">Work</h1>
         
         @if($works->count() > 0)
-            <div class="space-y-16">
+            <div class="space-y-8">
                 @foreach($works as $work)
                 <article class="group">
-                    <div class="flex flex-col lg:flex-row gap-8 items-start">
+                    <div class="flex flex-col lg:flex-row gap-8 items-start border border-gray-200 p-3 rounded-2xl">
                         <!-- Project Image -->
                         <div class="lg:w-1/2">
                             <div class="relative overflow-hidden rounded-lg bg-gradient-to-br {{ $loop->odd ? 'from-purple-600 to-blue-600' : ($loop->iteration % 4 == 2 ? 'from-orange-400 to-pink-600' : ($loop->iteration % 4 == 3 ? 'from-gray-800 to-gray-600' : 'from-red-500 to-orange-500')) }} aspect-[4/3]">

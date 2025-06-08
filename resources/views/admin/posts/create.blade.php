@@ -5,13 +5,17 @@
             <h2 class="font-semibold text-2xl text-slate-800 leading-tight">
                 {{ __('Add New Blog Post') }}
             </h2>
-            <a href="{{ route('admin.posts.index') }}" class="inline-flex items-center px-4 py-2 bg-white border border-slate-300 rounded-lg font-semibold text-xs text-slate-700 uppercase tracking-widest hover:bg-slate-50 active:bg-slate-100 focus:outline-none focus:border-slate-400 focus:ring ring-slate-300 disabled:opacity-25 transition ease-in-out duration-150">
-                <i class="fas fa-list-alt mr-2"></i>Back to List
-            </a>
         </div>
     </x-slot>
 
-    <div class="py-8"> {{-- Disesuaikan dari py-12 ke py-8 --}}
+    <div class="py-2"> {{-- Disesuaikan dari py-12 ke py-8 --}}
+           <a href="{{ route('admin.posts.index') }}" 
+               class="inline-flex items-center text-gray-600 hover:text-gray-800 font-medium transition-colors duration-300 mb-3">
+                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+                </svg>
+                Back to Blog
+            </a>
         <div class="max-w-3xl mx-auto sm:px-6 lg:px-8"> {{-- max-w-3xl dipertahankan untuk form --}}
             <div class="bg-white overflow-hidden shadow-sm rounded-xl border border-slate-200">
                 <div class="p-6 md:p-8 text-slate-700">

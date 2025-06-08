@@ -9,14 +9,18 @@
                 <a href="{{ route('admin.works.edit', $work) }}" class="inline-flex items-center px-4 py-2 bg-amber-500 border border-transparent rounded-lg font-semibold text-xs text-white uppercase tracking-widest hover:bg-amber-600 active:bg-amber-700 focus:outline-none focus:border-amber-700 focus:ring ring-amber-300 disabled:opacity-25 transition ease-in-out duration-150"> {{-- Style tombol Edit disesuaikan --}}
                     <i class="fas fa-edit mr-2"></i>Edit
                 </a>
-                <a href="{{ route('admin.works.index') }}" class="inline-flex items-center px-4 py-2 bg-white border border-slate-300 rounded-lg font-semibold text-xs text-slate-700 uppercase tracking-widest hover:bg-slate-50 active:bg-slate-100 focus:outline-none focus:border-slate-400 focus:ring ring-slate-300 disabled:opacity-25 transition ease-in-out duration-150"> {{-- Style tombol Back disesuaikan --}}
-                    <i class="fas fa-arrow-left mr-2"></i>Back to List
-                </a>
             </div>
         </div>
     </x-slot>
 
-    <div class="py-8"> {{-- Padding disesuaikan --}}
+    <div class="py-2"> {{-- Padding disesuaikan --}}
+        <a href="{{ route('admin.works.index') }}" 
+               class="inline-flex items-center text-gray-600 hover:text-gray-800 font-medium transition-colors duration-300 mb-3">
+                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+                </svg>
+                Back to List
+        </a>
         <div class="max-w-4xl mx-auto sm:px-6 lg:px-8"> {{-- max-w-4xl dipertahankan --}}
             <div class="bg-white overflow-hidden shadow-sm rounded-xl border border-slate-200"> {{-- Style kartu disesuaikan --}}
                 <div class="p-6 md:p-8 text-slate-700"> {{-- Warna teks & padding disesuaikan --}}

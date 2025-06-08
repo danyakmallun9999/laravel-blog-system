@@ -37,10 +37,10 @@
 
 
         @if($posts->count() > 0)
-            <div class="space-y-16">
+            <div class="space-y-8">
                 @foreach($posts as $post)
                 <article class="group">
-                    <div class="flex flex-col lg:flex-row gap-8 items-start">
+                    <div class="flex flex-col lg:flex-row gap-8 items-start border border-gray-200 p-3 rounded-2xl">
                         @if($post->image)
                         <div class="lg:w-1/2">
                             <a href="{{ route('blog.show', $post->slug) }}" class="block">
