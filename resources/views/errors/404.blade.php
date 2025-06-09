@@ -9,10 +9,6 @@
                 Maaf, halaman yang kamu cari tidak ada, mungkin sudah dipindahkan, atau URL yang kamu masukkan salah.
             </p>
             <div class="space-x-4">
-                <a href="{{ url()->previous() }}"
-                   class="inline-block bg-gray-300 hover:bg-gray-400 text-gray-800 font-medium py-3 px-6 rounded-lg transition duration-300">
-                    Kembali ke Halaman Sebelumnya
-                </a>
                 <a href="{{ route('home') }}"
                    class="inline-block bg-gray-800 hover:bg-gray-700 text-white font-medium py-3 px-6 rounded-lg transition duration-300">
                     Kembali ke Home
