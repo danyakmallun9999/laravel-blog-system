@@ -1,4 +1,3 @@
-{{-- resources/views/errors/404.blade.php --}}
 <x-public-layout>
     <div class="container mx-auto px-6 py-16 md:py-24 text-center">
         <div class="max-w-lg mx-auto">
@@ -10,7 +9,7 @@
             </p>
             <div class="space-x-4">
                 <a href="{{ route('home') }}"
-                   class="inline-block bg-gray-800 hover:bg-gray-700 text-white font-medium py-3 px-6 rounded-lg transition duration-300">
+                    class="inline-block bg-gray-800 hover:bg-gray-700 text-white font-medium py-3 px-6 rounded-lg transition duration-300">
                     Kembali ke Home
                 </a>
             </div>
