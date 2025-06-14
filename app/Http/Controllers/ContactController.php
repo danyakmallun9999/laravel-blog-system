@@ -13,7 +13,7 @@ class ContactController extends Controller
             'phone' => '+62 812 3456 7890',
             'socials' => [
                 ['name' => 'GitHub', 'url' => 'https://github.com/danyakmallun9999', 'icon' => 'fab fa-github'], 
-                ['name' => 'LinkedIn', 'url' => 'https://linkedin.com/in/danyakmallun', 'icon' => 'fab fa-linkedin'],
+                ['name' => 'LinkedIn', 'url' => 'https://www.linkedin.com/in/dany-akmallun-ni-am-786580230/', 'icon' => 'fab fa-linkedin'],
                 ['name' => 'Twitter', 'url' => 'https://twitter.com/danyakmallun', 'icon' => 'fab fa-twitter'],
             ]
         ];
