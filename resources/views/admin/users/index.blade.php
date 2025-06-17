@@ -16,7 +16,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <!-- Alert Messages -->
             @if (session('success'))
-                <div class="mb-6 p-4 bg-green-100 border border-green-200 rounded-xl mx-4 sm:mx-0">
+                <div class="mb-6 p-4 bg-green-100 border border-green-200 rounded-xl ">
                     <div class="flex items-center">
                         <i class="fas fa-check-circle text-green-600 mr-3"></i>
                         <p class="text-green-800 font-medium">{{ session('success') }}</p>
@@ -24,7 +24,7 @@
                 </div>
             @endif
             @if (session('error'))
-                <div class="mb-6 p-4 bg-red-100 border border-red-200 rounded-xl mx-4 sm:mx-0">
+                <div class="mb-6 p-4 bg-red-100 border border-red-200 rounded-xl ">
                     <div class="flex items-center">
                         <i class="fas fa-exclamation-circle text-red-600 mr-3"></i>
                         <p class="text-red-800 font-medium">{{ session('error') }}</p>
@@ -33,7 +33,7 @@
             @endif
 
             <!-- Users Card -->
-            <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden mx-4 sm:mx-0">
+            <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden ">
                 <div class="px-6 py-4 border-b border-slate-200 bg-slate-50">
                     <div class="flex items-center justify-between">
                         <div class="flex items-center">
