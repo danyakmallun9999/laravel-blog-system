@@ -5,70 +5,98 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\View\View; // Pastikan untuk mengimpor View
+use Illuminate\View\View;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
+use Illuminate\Validation\Rules;
+use Illuminate\Support\Arr;
 
 class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    // ... (method index, create, store, edit, update tidak berubah) ...
     public function index(): View
     {
-        // Ambil semua pengguna, kecuali user yang sedang login
-        // Eager load relasi 'roles' untuk efisiensi query (menghindari N+1 problem)
         $users = User::with('roles')
-                    ->where('id', '!=', auth()->id()) // Opsional: Sembunyikan diri sendiri dari daftar
+                    ->where('id', '!=', auth()->id())
                     ->latest()
-                    ->paginate(10); // Gunakan pagination
+                    ->paginate(10);
 
         return view('admin.users.index', compact('users'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function create(): View
     {
-        // Kita akan mengisi ini nanti
+        $roles = Role::where('name', '!=', 'Super Admin')->pluck('name', 'name');
+        return view('admin.users.create', compact('roles'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
-        // Kita akan mengisi ini nanti
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'roles' => ['required', 'array']
+        ]);
+
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
+
+        $user->assignRole($request->roles);
+
+        return redirect()->route('admin.users.index')->with('success', 'User created successfully.');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(User $user)
+    public function edit(User $user): View
     {
-        // Tidak digunakan sesuai definisi rute kita
+        $roles = Role::where('name', '!=', 'Super Admin')->pluck('name', 'name');
+        $userRoles = $user->getRoleNames()->toArray();
+        return view('admin.users.edit', compact('user', 'roles', 'userRoles'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(User $user)
+    public function update(Request $request, User $user): RedirectResponse
     {
-        // Kita akan mengisi ini nanti
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,'.$user->id],
+            'password' => ['nullable', 'confirmed', Rules\Password::defaults()],
+            'roles' => ['required', 'array']
+        ]);
+
+        $input = $request->except('password', 'password_confirmation');
+        if ($request->filled('password')) {
+            $input['password'] = Hash::make($request->password);
+        }
+        $user->update($input);
+        $user->syncRoles($request->roles);
+
+        return redirect()->route('admin.users.index')->with('success', 'User updated successfully.');
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, User $user)
-    {
-        // Kita akan mengisi ini nanti
-    }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(User $user)
+    public function destroy(User $user): RedirectResponse
     {
-        // Kita akan mengisi ini nanti
+        // Pengecekan keamanan 1: Mencegah user menghapus dirinya sendiri
+        if ($user->id === auth()->id()) {
+            return redirect()->route('admin.users.index')
+                ->with('error', 'You cannot delete yourself.');
+        }
+
+        // Pengecekan keamanan 2: Mencegah Super Admin dihapus
+        if ($user->hasRole('Super Admin')) {
+            return redirect()->route('admin.users.index')
+                ->with('error', 'Cannot delete a Super Admin.');
+        }
+
+        $user->delete();
+
+        return redirect()->route('admin.users.index')->with('success', 'User deleted successfully.');
     }
 }
