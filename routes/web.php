@@ -3,8 +3,8 @@
 // routes/web.php
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\WorkController as PublicWorkController; // Alias untuk controller publik
-use App\Http\Controllers\PostController as PublicPostController; // Alias untuk controller publik
+use App\Http\Controllers\WorkController as PublicWorkController;
+use App\Http\Controllers\PostController as PublicPostController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProfileController;
 
@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\Admin\PostController as AdminPostController;
 use App\Http\Controllers\Admin\WorkController as AdminWorkController;
+use App\Http\Controllers\Admin\UserController as AdminUserController;
 
 
 /*
@@ -38,15 +39,28 @@ Route::get('/dashboard', function () {
 Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
 
-    // CRUD Kategori Blog
-    Route::resource('categories', AdminCategoryController::class)->except(['show']); // Tidak perlu halaman show untuk kategori
+    // ==================== PENAMBAHAN OTORISASI MIDDLEWARE ====================
+    // Setiap akses ke rute resource ini sekarang akan dicek permission-nya.
 
-    // CRUD Blog Posts
-    Route::resource('posts', AdminPostController::class);
+    // CRUD Kategori Blog - hanya bisa diakses oleh user dengan permission 'manage categories'
+    Route::resource('categories', AdminCategoryController::class)
+        ->except(['show'])
+        ->middleware(['can:manage categories']);
 
-    // CRUD Works (Projek)
-    Route::resource('works', AdminWorkController::class);
+    // CRUD Blog Posts - hanya bisa diakses oleh user dengan permission 'manage posts'
+    Route::resource('posts', AdminPostController::class)
+        ->middleware(['can:manage posts']);
+
+    // CRUD Works (Projek) - hanya bisa diakses oleh user dengan permission 'manage works'
+    Route::resource('works', AdminWorkController::class)
+        ->middleware(['can:manage works']);
+
+    // CRUD Users
+    Route::resource('users', AdminUserController::class)->except(['show'])->middleware(['can:manage users']);
     
+    // ================== AKHIR DARI PENAMBAHAN ==================
+
+    // Rute profil tetap dapat diakses oleh semua user yang sudah login
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');

@@ -13,6 +13,7 @@ class DatabaseSeeder extends Seeder
     {
         // Panggil seeder dalam urutan yang benar:
         $this->call([
+            RolePermissionSeeder::class,
             UserSeeder::class,     // User dulu, agar PostSeeder bisa mendapatkan user_id
             CategorySeeder::class, // Kategori dulu, agar PostSeeder bisa mendapatkan category_id
             PostSeeder::class,     // Post setelah User dan Category

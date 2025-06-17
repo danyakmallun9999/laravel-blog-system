@@ -12,7 +12,7 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         // Menggunakan Eloquent Model
-        User::create([
+        $user = User::create([
             'name' => 'Dany Akmallun Niam',
             'email' => 'danyakmallun9999@gmail.com',
             'password' => Hash::make('daN00b-9999'),
@@ -26,5 +26,7 @@ class UserSeeder extends Seeder
         //     'password' => Hash::make('password123'),
         //     'email_verified_at' => now(),
         // ]);
+
+        $user->assignRole('Super Admin');
     }
 }
