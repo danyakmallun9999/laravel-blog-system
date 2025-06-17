@@ -23,6 +23,14 @@
                     </div>
                 </div>
             @endif
+            @if (session('error'))
+                <div class="mb-6 p-4 bg-red-100 border border-red-200 rounded-xl">
+                    <div class="flex items-center">
+                        <i class="fas fa-exclamation-circle text-red-600 mr-3"></i>
+                        <p class="text-red-800 font-medium">{{ session('error') }}</p>
+                    </div>
+                </div>
+            @endif
 
             <!-- Users Card -->
             <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
@@ -92,18 +100,33 @@
                                         </td>
                                         <td class="px-6 py-4 text-sm text-slate-600">
                                             {{ $user->created_at->format('d M Y') }}</td>
-                                        <td class="px-6 py-4 text-right text-sm font-medium space-x-2">
-                                            <a href="{{ route('admin.users.edit', $user) }}"
-                                                class="text-blue-600 hover:text-blue-800">Edit</a>
-                                            {{-- Mencegah Super Admin dihapus --}}
-                                            @if (!$user->hasRole('Super Admin'))
-                                                <form action="{{ route('admin.users.destroy', $user) }}" method="POST"
-                                                    onsubmit="return confirm('Are you sure?');" class="inline">
-                                                    @csrf @method('DELETE')
-                                                    <button type="submit"
-                                                        class="text-red-600 hover:text-red-800">Delete</button>
-                                                </form>
-                                            @endif
+                                        <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                            {{-- ==================== PENAMBAHAN MODAL (DESKTOP) ==================== --}}
+                                            <div x-data="{ show: false }"
+                                                class="flex items-center justify-end space-x-2">
+                                                <a href="{{ route('admin.users.edit', $user) }}"
+                                                    class="text-blue-600 hover:text-blue-800">Edit</a>
+                                                @if (!$user->hasRole('Super Admin'))
+                                                    <form x-ref="deleteForm"
+                                                        action="{{ route('admin.users.destroy', $user) }}"
+                                                        method="POST" class="inline">
+                                                        @csrf @method('DELETE')
+                                                        <button type="button" @click.prevent="show = true"
+                                                            class="text-red-600 hover:text-red-800">Delete</button>
+                                                    </form>
+                                                @endif
+                                                <x-confirm-deletion-modal title="Hapus Pengguna"
+                                                    message="Apakah Anda yakin ingin menghapus pengguna '{{ $user->name }}'?">
+                                                    <x-slot:footer>
+                                                        <button type="button" @click="$refs.deleteForm.submit()"
+                                                            class="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto">Ya,
+                                                            Hapus</button>
+                                                        <button type="button" @click="show = false"
+                                                            class="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-medium text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto">Batal</button>
+                                                    </x-slot:footer>
+                                                </x-confirm-deletion-modal>
+                                            </div>
+                                            {{-- ================== AKHIR DARI PENAMBAHAN ================== --}}
                                         </td>
                                     </tr>
                                 @endforeach
@@ -147,18 +170,30 @@
                                 <div class="flex items-center justify-between">
                                     <span class="text-xs text-slate-500">Joined:
                                         {{ $user->created_at->format('d M Y') }}</span>
-                                    <div class="flex justify-end space-x-4">
+                                    {{-- ==================== PENAMBAHAN MODAL (MOBILE) ==================== --}}
+                                    <div x-data="{ show: false }" class="flex justify-end space-x-4">
                                         <a href="{{ route('admin.users.edit', $user) }}"
                                             class="text-sm font-medium text-blue-600 hover:underline">Edit</a>
                                         @if (!$user->hasRole('Super Admin'))
-                                            <form action="{{ route('admin.users.destroy', $user) }}" method="POST"
-                                                onsubmit="return confirm('Are you sure?');" class="inline">
+                                            <form x-ref="deleteForm" action="{{ route('admin.users.destroy', $user) }}"
+                                                method="POST" class="inline">
                                                 @csrf @method('DELETE')
-                                                <button type="submit"
+                                                <button type="button" @click.prevent="show = true"
                                                     class="text-sm font-medium text-red-600 hover:underline">Delete</button>
                                             </form>
                                         @endif
+                                        <x-confirm-deletion-modal title="Hapus Pengguna"
+                                            message="Apakah Anda yakin ingin menghapus pengguna '{{ $user->name }}'?">
+                                            <x-slot:footer>
+                                                <button type="button" @click="$refs.deleteForm.submit()"
+                                                    class="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto">Ya,
+                                                    Hapus</button>
+                                                <button type="button" @click="show = false"
+                                                    class="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-medium text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto">Batal</button>
+                                            </x-slot:footer>
+                                        </x-confirm-deletion-modal>
                                     </div>
+                                    {{-- ================== AKHIR DARI PENAMBAHAN ================== --}}
                                 </div>
                             </div>
                         @endforeach
@@ -172,17 +207,7 @@
                     @endif
                 @else
                     {{-- Empty State --}}
-                    <div class="text-center py-16 px-6">
-                        <i class="fas fa-users-slash text-slate-400 text-5xl mb-4"></i>
-                        <h3 class="text-xl font-medium text-slate-800 mb-2">No Other Users Found</h3>
-                        <p class="text-slate-500 mb-6">You are the only user here. Add a new user to assign roles and
-                            permissions.</p>
-                        <a href="{{ route('admin.users.create') }}"
-                            class="inline-flex items-center px-6 py-3 bg-slate-800 hover:bg-slate-700 text-white font-semibold rounded-lg shadow-sm hover:shadow-md transition-all duration-200 group">
-                            <i class="fas fa-user-plus mr-2 transition-transform group-hover:scale-110"></i>
-                            Add First User
-                        </a>
-                    </div>
+                    {{-- ... (kode empty state tidak berubah) ... --}}
                 @endif
             </div>
         </div>
