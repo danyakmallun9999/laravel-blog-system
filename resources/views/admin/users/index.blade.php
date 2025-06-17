@@ -13,10 +13,10 @@
     </x-slot>
 
     <div class="py-2">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 px-4">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <!-- Alert Messages -->
             @if (session('success'))
-                <div class="mb-6 p-4 bg-green-100 border border-green-200 rounded-xl">
+                <div class="mb-6 p-4 bg-green-100 border border-green-200 rounded-xl mx-4 sm:mx-0">
                     <div class="flex items-center">
                         <i class="fas fa-check-circle text-green-600 mr-3"></i>
                         <p class="text-green-800 font-medium">{{ session('success') }}</p>
@@ -24,7 +24,7 @@
                 </div>
             @endif
             @if (session('error'))
-                <div class="mb-6 p-4 bg-red-100 border border-red-200 rounded-xl">
+                <div class="mb-6 p-4 bg-red-100 border border-red-200 rounded-xl mx-4 sm:mx-0">
                     <div class="flex items-center">
                         <i class="fas fa-exclamation-circle text-red-600 mr-3"></i>
                         <p class="text-red-800 font-medium">{{ session('error') }}</p>
@@ -33,7 +33,7 @@
             @endif
 
             <!-- Users Card -->
-            <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+            <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden mx-4 sm:mx-0">
                 <div class="px-6 py-4 border-b border-slate-200 bg-slate-50">
                     <div class="flex items-center justify-between">
                         <div class="flex items-center">
@@ -101,7 +101,7 @@
                                         <td class="px-6 py-4 text-sm text-slate-600">
                                             {{ $user->created_at->format('d M Y') }}</td>
                                         <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                            {{-- ==================== PENAMBAHAN MODAL (DESKTOP) ==================== --}}
+                                            {{-- ==================== PERBAIKAN DI SINI (DESKTOP) ==================== --}}
                                             <div x-data="{ show: false }"
                                                 class="flex items-center justify-end space-x-2">
                                                 <a href="{{ route('admin.users.edit', $user) }}"
@@ -110,23 +110,26 @@
                                                     <form x-ref="deleteForm"
                                                         action="{{ route('admin.users.destroy', $user) }}"
                                                         method="POST" class="inline">
-                                                        @csrf @method('DELETE')
+                                                        @csrf
+                                                        @method('DELETE')
                                                         <button type="button" @click.prevent="show = true"
-                                                            class="text-red-600 hover:text-red-800">Delete</button>
+                                                            class="text-red-600 hover:text-red-800">
+                                                            Delete
+                                                        </button>
                                                     </form>
                                                 @endif
                                                 <x-confirm-deletion-modal title="Hapus Pengguna"
-                                                    message="Apakah Anda yakin ingin menghapus pengguna '{{ $user->name }}'?">
+                                                    message="Apakah Anda yakin ingin menghapus pengguna?">
                                                     <x-slot:footer>
                                                         <button type="button" @click="$refs.deleteForm.submit()"
-                                                            class="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto">Ya,
+                                                            class="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-700 sm:ml-3 sm:w-auto">Ya,
                                                             Hapus</button>
                                                         <button type="button" @click="show = false"
                                                             class="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-medium text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto">Batal</button>
                                                     </x-slot:footer>
                                                 </x-confirm-deletion-modal>
                                             </div>
-                                            {{-- ================== AKHIR DARI PENAMBAHAN ================== --}}
+                                            {{-- ================== AKHIR DARI PERBAIKAN ================== --}}
                                         </td>
                                     </tr>
                                 @endforeach
@@ -137,7 +140,7 @@
                     <!-- Mobile Card View -->
                     <div class="md:hidden divide-y divide-slate-200">
                         @foreach ($users as $user)
-                            <div class="p-4">
+                            <div x-data="{ show: false }" class="p-4">
                                 <div class="flex items-center mb-3">
                                     <div
                                         class="h-10 w-10 rounded-full bg-slate-200 flex-shrink-0 flex items-center justify-center mr-4">
@@ -170,31 +173,33 @@
                                 <div class="flex items-center justify-between">
                                     <span class="text-xs text-slate-500">Joined:
                                         {{ $user->created_at->format('d M Y') }}</span>
-                                    {{-- ==================== PENAMBAHAN MODAL (MOBILE) ==================== --}}
-                                    <div x-data="{ show: false }" class="flex justify-end space-x-4">
+                                    {{-- ==================== PERBAIKAN DI SINI (MOBILE) ==================== --}}
+                                    <div class="flex justify-end items-center">
                                         <a href="{{ route('admin.users.edit', $user) }}"
-                                            class="text-sm font-medium text-blue-600 hover:underline">Edit</a>
+                                            class="px-3 py-1 text-sm font-medium text-blue-600 hover:underline transition">Edit</a>
+                                        <div class="border-l border-slate-300 h-4 mx-2"></div>
                                         @if (!$user->hasRole('Super Admin'))
                                             <form x-ref="deleteForm" action="{{ route('admin.users.destroy', $user) }}"
                                                 method="POST" class="inline">
-                                                @csrf @method('DELETE')
+                                                @csrf
+                                                @method('DELETE')
                                                 <button type="button" @click.prevent="show = true"
-                                                    class="text-sm font-medium text-red-600 hover:underline">Delete</button>
+                                                    class="px-3 py-1 text-sm font-medium text-red-600 hover:underline transition">Delete</button>
                                             </form>
                                         @endif
-                                        <x-confirm-deletion-modal title="Hapus Pengguna"
-                                            message="Apakah Anda yakin ingin menghapus pengguna '{{ $user->name }}'?">
-                                            <x-slot:footer>
-                                                <button type="button" @click="$refs.deleteForm.submit()"
-                                                    class="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto">Ya,
-                                                    Hapus</button>
-                                                <button type="button" @click="show = false"
-                                                    class="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-medium text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto">Batal</button>
-                                            </x-slot:footer>
-                                        </x-confirm-deletion-modal>
                                     </div>
-                                    {{-- ================== AKHIR DARI PENAMBAHAN ================== --}}
                                 </div>
+                                <x-confirm-deletion-modal title="Hapus Pengguna"
+                                    message="Apakah Anda yakin ingin menghapus pengguna '{{ e($user->name) }}'? Tindakan ini tidak dapat diurungkan.">
+                                    <x-slot:footer>
+                                        <button type="button" @click="$refs.deleteForm.submit()"
+                                            class="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-700 sm:ml-3 sm:w-auto">Ya,
+                                            Hapus</button>
+                                        <button type="button" @click="show = false"
+                                            class="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-medium text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto">Batal</button>
+                                    </x-slot:footer>
+                                </x-confirm-deletion-modal>
+                                {{-- ================== AKHIR DARI PERBAIKAN ================== --}}
                             </div>
                         @endforeach
                     </div>
@@ -207,9 +212,9 @@
                     @endif
                 @else
                     {{-- Empty State --}}
-                    {{-- ... (kode empty state tidak berubah) ... --}}
                 @endif
             </div>
+
         </div>
     </div>
 </x-app-layout>

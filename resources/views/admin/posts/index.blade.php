@@ -12,11 +12,11 @@
         </div>
     </x-slot>
 
-    <div class="py-6 sm:py-8">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 px-4">
+    <div class="py-2">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <!-- Alert Messages -->
             @if (session('success'))
-                <div class="mb-6 p-4 bg-green-100 border border-green-200 rounded-xl">
+                <div class="mb-6 p-4 bg-green-100 border border-green-200 rounded-xl ">
                     <div class="flex items-center">
                         <i class="fas fa-check-circle text-green-600 mr-3"></i>
                         <p class="text-green-800 font-medium">{{ session('success') }}</p>
@@ -25,7 +25,7 @@
             @endif
 
             <!-- Posts Container -->
-            <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+            <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden ">
                 <div class="px-6 py-4 border-b border-slate-200 bg-slate-50">
                     <div class="flex items-center justify-between">
                         <div class="flex items-center">
@@ -98,7 +98,8 @@
                                                 <form x-ref="deleteForm"
                                                     action="{{ route('admin.posts.destroy', $post) }}" method="POST"
                                                     class="inline">
-                                                    @csrf @method('DELETE')
+                                                    @csrf
+                                                    @method('DELETE')
                                                     <button type="button" @click.prevent="show = true"
                                                         class="font-medium text-red-600 hover:text-red-800">Delete</button>
                                                 </form>
@@ -106,7 +107,7 @@
                                                     message="Apakah Anda yakin ingin menghapus postingan?">
                                                     <x-slot:footer>
                                                         <button type="button" @click="$refs.deleteForm.submit()"
-                                                            class="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto">Ya,
+                                                            class="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-700 sm:ml-3 sm:w-auto">Ya,
                                                             Hapus</button>
                                                         <button type="button" @click="show = false"
                                                             class="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-medium text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto">Batal</button>
@@ -148,28 +149,32 @@
                                             {{ $post->created_at->format('d M Y, H:i') }}</p>
                                     </div>
                                 </div>
-                                <div class="flex justify-end space-x-4 mt-3 pt-3 border-t border-slate-200">
+                                {{-- ==================== PERBAIKAN DI SINI (MOBILE) ==================== --}}
+                                <div
+                                    class="flex items-center justify-end space-x-2 mt-3 pt-3 border-t border-slate-200">
                                     <a href="{{ route('admin.posts.show', $post) }}"
-                                        class="text-sm font-medium text-sky-600 hover:underline">View</a>
+                                        class="px-3 py-1 text-sm font-medium text-sky-600 hover:bg-sky-50 rounded-md transition-colors">View</a>
                                     <a href="{{ route('admin.posts.edit', $post) }}"
-                                        class="text-sm font-medium text-amber-600 hover:underline">Edit</a>
+                                        class="px-3 py-1 text-sm font-medium text-amber-600 hover:bg-amber-50 rounded-md transition-colors">Edit</a>
+
                                     <form x-ref="deleteForm" action="{{ route('admin.posts.destroy', $post) }}"
                                         method="POST" class="inline">
                                         @csrf @method('DELETE')
                                         <button type="button" @click.prevent="show = true"
-                                            class="text-sm font-medium text-red-600 hover:underline">Delete</button>
+                                            class="px-3 py-1 text-sm font-medium text-red-600 hover:text-red-800 transition">Delete</button>
                                     </form>
                                     <x-confirm-deletion-modal title="Hapus Postingan"
-                                        message="Apakah Anda yakin ingin menghapus postingan?">
+                                        message="Apakah Anda yakin ingin menghapus postingan '{{ e(Str::limit($post->title, 30)) }}'?">
                                         <x-slot:footer>
                                             <button type="button" @click="$refs.deleteForm.submit()"
-                                                class="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto">Ya,
+                                                class="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-700 sm:ml-3 sm:w-auto">Ya,
                                                 Hapus</button>
                                             <button type="button" @click="show = false"
                                                 class="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-medium text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto">Batal</button>
                                         </x-slot:footer>
                                     </x-confirm-deletion-modal>
                                 </div>
+                                {{-- ================== AKHIR DARI PERBAIKAN ================== --}}
                             </div>
                         @endforeach
                     </div>
@@ -181,16 +186,7 @@
                         </div>
                     @endif
                 @else
-                    <div class="text-center py-16 px-6">
-                        <i class="fas fa-newspaper text-slate-400 text-5xl mb-4"></i>
-                        <h3 class="text-xl font-medium text-slate-800 mb-2">No Posts Found</h3>
-                        <p class="text-slate-500 mb-6">Get started by creating your first blog post.</p>
-                        <a href="{{ route('admin.posts.create') }}"
-                            class="inline-flex items-center px-6 py-3 bg-slate-800 hover:bg-slate-700 text-white font-semibold rounded-lg shadow-sm hover:shadow-md transition-all duration-200 group">
-                            <i class="fas fa-plus mr-2 transition-transform group-hover:scale-110"></i>
-                            Create First Post
-                        </a>
-                    </div>
+                    {{-- Empty State --}}
                 @endif
             </div>
         </div>
