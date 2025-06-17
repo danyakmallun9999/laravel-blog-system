@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\Admin\PostController as AdminPostController;
 use App\Http\Controllers\Admin\WorkController as AdminWorkController;
+use App\Http\Controllers\Admin\UserController as AdminUserController;
 
 
 /*
@@ -53,6 +54,9 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     // CRUD Works (Projek) - hanya bisa diakses oleh user dengan permission 'manage works'
     Route::resource('works', AdminWorkController::class)
         ->middleware(['can:manage works']);
+
+    // CRUD Users
+    Route::resource('users', AdminUserController::class)->except(['show'])->middleware(['can:manage users']);
     
     // ================== AKHIR DARI PENAMBAHAN ==================
 

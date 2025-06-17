@@ -58,7 +58,6 @@
                                 <span class="hidden md:inline">{{ __('Dashboard') }}</span>
                             </x-nav-link>
 
-                            {{-- ==================== PENAMBAHAN OTORISASI ==================== --}}
                             @can('manage categories')
                                 <x-nav-link :href="route('admin.categories.index')" :active="request()->routeIs('admin.categories.*')">
                                     <i class="fas fa-folder w-5 sm:mr-2"></i>
@@ -79,13 +78,20 @@
                                     <span class="hidden md:inline">{{ __('Works') }}</span>
                                 </x-nav-link>
                             @endcan
+
+                            {{-- ==================== PENAMBAHAN LINK USERS ==================== --}}
+                            @can('manage users')
+                                <x-nav-link :href="route('admin.users.index')" :active="request()->routeIs('admin.users.*')">
+                                    <i class="fas fa-users w-5 sm:mr-2"></i>
+                                    <span class="hidden md:inline">{{ __('Users') }}</span>
+                                </x-nav-link>
+                            @endcan
                             {{-- ================== AKHIR DARI PENAMBAHAN ================== --}}
                         </div>
                     </div>
 
                     <!-- User Dropdown & Mobile Menu Button -->
                     <div class="flex items-center">
-                        {{-- ... (kode user dropdown tidak berubah) ... --}}
                         <div class="hidden sm:flex sm:items-center sm:ms-6">
                             <x-dropdown align="right" width="48">
                                 <x-slot name="trigger">
@@ -156,7 +162,6 @@
                         <i class="fas fa-chart-line w-5 mr-3"></i>{{ __('Dashboard') }}
                     </x-responsive-nav-link>
 
-                    {{-- ==================== PENAMBAHAN OTORISASI ==================== --}}
                     @can('manage categories')
                         <x-responsive-nav-link :href="route('admin.categories.index')" :active="request()->routeIs('admin.categories.*')">
                             <i class="fas fa-folder w-5 mr-3"></i>{{ __('Categories') }}
@@ -172,6 +177,13 @@
                     @can('manage works')
                         <x-responsive-nav-link :href="route('admin.works.index')" :active="request()->routeIs('admin.works.*')">
                             <i class="fas fa-briefcase w-5 mr-3"></i>{{ __('Works') }}
+                        </x-responsive-nav-link>
+                    @endcan
+
+                    {{-- ==================== PENAMBAHAN LINK USERS ==================== --}}
+                    @can('manage users')
+                        <x-responsive-nav-link :href="route('admin.users.index')" :active="request()->routeIs('admin.users.*')">
+                            <i class="fas fa-users w-5 mr-3"></i>{{ __('Users') }}
                         </x-responsive-nav-link>
                     @endcan
                     {{-- ================== AKHIR DARI PENAMBAHAN ================== --}}
