@@ -118,7 +118,6 @@
                         </a>
                     @endforeach
                 @else
-                    {{-- ... (kode placeholder featured works tidak berubah) ... --}}
                 @endif
             </div>
         </section>

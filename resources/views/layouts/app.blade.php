@@ -1,4 +1,3 @@
-{{-- resources/views/layouts/app.blade.php --}}
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
@@ -23,7 +22,6 @@
         referrerpolicy="origin"></script>
 
     <style>
-        /* Menggunakan style tag untuk memastikan font Inter menjadi default */
         body {
             font-family: 'Inter', sans-serif;
         }
@@ -185,7 +183,6 @@
                     @endcan
                 </div>
 
-                {{-- ==================== PERBAIKAN DI SINI ==================== --}}
                 <!-- Responsive Settings Options -->
                 <div class="pt-4 pb-1 border-t border-slate-200">
                     <div class="px-4 flex items-center">
@@ -216,7 +213,6 @@
                         </form>
                     </div>
                 </div>
-                {{-- ================== AKHIR DARI PERBAIKAN ================== --}}
             </div>
         </nav>
 

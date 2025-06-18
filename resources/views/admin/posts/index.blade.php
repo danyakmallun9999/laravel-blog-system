@@ -149,7 +149,6 @@
                                             {{ $post->created_at->format('d M Y, H:i') }}</p>
                                     </div>
                                 </div>
-                                {{-- ==================== PERBAIKAN DI SINI (MOBILE) ==================== --}}
                                 <div
                                     class="flex items-center justify-end space-x-2 mt-3 pt-3 border-t border-slate-200">
                                     <a href="{{ route('admin.posts.show', $post) }}"
@@ -174,7 +173,6 @@
                                         </x-slot:footer>
                                     </x-confirm-deletion-modal>
                                 </div>
-                                {{-- ================== AKHIR DARI PERBAIKAN ================== --}}
                             </div>
                         @endforeach
                     </div>

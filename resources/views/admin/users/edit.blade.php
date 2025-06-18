@@ -11,7 +11,7 @@
                 <div class="p-6 md:p-8">
                     <form method="POST" action="{{ route('admin.users.update', $user) }}">
                         @csrf
-                        @method('PUT') {{-- Penting untuk form update --}}
+                        @method('PUT') // Penting untuk form update
 
                         <!-- Name -->
                         <div>
@@ -51,7 +51,6 @@
                             <div class="mt-2 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                                 @foreach ($roles as $role)
                                     <label class="inline-flex items-center">
-                                        {{-- Cek apakah peran ini ada di dalam array $userRoles --}}
                                         <input type="checkbox" name="roles[]" value="{{ $role }}"
                                             class="rounded border-gray-300 text-slate-600 shadow-sm focus:ring-slate-500"
                                             {{ in_array($role, $userRoles) ? 'checked' : '' }}>

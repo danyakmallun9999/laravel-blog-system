@@ -14,7 +14,6 @@ use Illuminate\Support\Arr;
 
 class UserController extends Controller
 {
-    // ... (method index, create, store, edit, update tidak berubah) ...
     public function index(): View
     {
         $users = User::with('roles')

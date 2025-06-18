@@ -1,5 +1,4 @@
 <?php
-
 // routes/web.php
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -14,7 +13,6 @@ use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\Admin\PostController as AdminPostController;
 use App\Http\Controllers\Admin\WorkController as AdminWorkController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
-
 
 /*
 |--------------------------------------------------------------------------
@@ -40,7 +38,7 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
 
     // ==================== PENAMBAHAN OTORISASI MIDDLEWARE ====================
-    // Setiap akses ke rute resource ini sekarang akan dicek permission-nya.
+    // Setiap akses ke rute, resource ini sekarang akan dicek permission-nya.
 
     // CRUD Kategori Blog - hanya bisa diakses oleh user dengan permission 'manage categories'
     Route::resource('categories', AdminCategoryController::class)
@@ -55,7 +53,7 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     Route::resource('works', AdminWorkController::class)
         ->middleware(['can:manage works']);
 
-    // CRUD Users
+    // CRUD Users - hanya bisa diakses oleh user dengan permission 'manage users'
     Route::resource('users', AdminUserController::class)->except(['show'])->middleware(['can:manage users']);
     
     // ================== AKHIR DARI PENAMBAHAN ==================

@@ -85,7 +85,6 @@
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-600">
                                             {{ $work->category }}</td>
                                         <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                            {{-- ==================== PERBAIKAN DI SINI (DESKTOP) ==================== --}}
                                             <div x-data="{ show: false }"
                                                 class="flex items-center justify-end space-x-3">
                                                 <a href="{{ route('admin.works.show', $work) }}"
@@ -110,7 +109,6 @@
                                                     </x-slot:footer>
                                                 </x-confirm-deletion-modal>
                                             </div>
-                                            {{-- ================== AKHIR DARI PERBAIKAN ================== --}}
                                         </td>
                                     </tr>
                                 @endforeach
@@ -151,8 +149,6 @@
                                         class="px-3 py-1 text-sm font-medium text-sky-600 hover:bg-sky-50 rounded-md transition-colors">View</a>
                                     <a href="{{ route('admin.works.edit', $work) }}"
                                         class="px-3 py-1 text-sm font-medium text-amber-600 hover:bg-amber-50 rounded-md transition-colors">Edit</a>
-
-                                    {{-- ==================== PERBAIKAN DI SINI (MOBILE) ==================== --}}
                                     <form x-ref="deleteForm" action="{{ route('admin.works.destroy', $work) }}"
                                         method="POST" class="inline">
                                         @csrf @method('DELETE')
@@ -169,7 +165,6 @@
                                                 class="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-medium text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto">Batal</button>
                                         </x-slot:footer>
                                     </x-confirm-deletion-modal>
-                                    {{-- ================== AKHIR DARI PERBAIKAN ================== --}}
                                 </div>
                             </div>
                         @endforeach

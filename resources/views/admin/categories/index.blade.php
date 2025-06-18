@@ -78,7 +78,6 @@
                                                 class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">{{ $category->posts_count ?? $category->posts()->count() }}</span>
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                            {{-- Penambahan Modal untuk Desktop --}}
                                             <div x-data="{ show: false }"
                                                 class="flex items-center justify-end space-x-2">
                                                 <a href="{{ route('admin.categories.edit', $category) }}"
@@ -114,7 +113,6 @@
                         </table>
                     </div>
 
-                    <!-- Mobile Card View (di bawah md) -->
                     <div class="md:hidden divide-y divide-slate-200">
                         @foreach ($categories as $category)
                             <div x-data="{ show: false }" class="p-4">
