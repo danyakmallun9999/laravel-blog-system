@@ -1,5 +1,5 @@
 <x-public-layout>
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 py-8">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 py-8">
         <!-- Navigasi Kembali -->
         <div class="mb-8">
             <a href="{{ route('work.index') }}"
@@ -12,7 +12,7 @@
             </a>
         </div>
 
-        <article class="max-w-3xl mx-auto">
+        <article class="max-w-5xl mx-auto">
             <!-- Header Artikel Proyek -->
             <header class="mb-10 text-center">
                 <!-- Judul Proyek -->
@@ -31,7 +31,7 @@
             <!-- Gambar Unggulan Proyek -->
             @if ($work->image)
                 <div class="mb-10 sm:mb-12">
-                    <div class="relative overflow-hidden rounded-2xl bg-gray-100 aspect-[16/10]">
+                    <div class="relative overflow-hidden rounded-2xl bg-gray-100 aspect-[16/9]">
                         @if (Str::startsWith($work->image, 'http'))
                             <img src="{{ $work->image }}" alt="{{ $work->title }}" class="w-full h-full object-cover">
                         @else

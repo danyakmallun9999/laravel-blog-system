@@ -1,5 +1,5 @@
 <x-public-layout>
-    <div class="max-w-4xl mx-auto px-6 py-8">
+    <div class="max-w-5xl mx-auto px-6 py-8">
         <h1 class="text-5xl font-bold text-gray-800 mb-8">Work</h1>
 
         @if ($works->count() > 0)
@@ -12,7 +12,7 @@
                                 <!-- Project Image -->
                                 <div class="lg:w-1/2">
                                     <div
-                                        class="relative overflow-hidden rounded-lg bg-gradient-to-br {{ $loop->odd ? 'from-purple-600 to-blue-600' : ($loop->iteration % 4 == 2 ? 'from-orange-400 to-pink-600' : ($loop->iteration % 4 == 3 ? 'from-gray-800 to-gray-600' : 'from-red-500 to-orange-500')) }} aspect-[4/3]">
+                                        class="relative overflow-hidden rounded-lg bg-gradient-to-br {{ $loop->odd ? 'from-purple-600 to-blue-600' : ($loop->iteration % 4 == 2 ? 'from-orange-400 to-pink-600' : ($loop->iteration % 4 == 3 ? 'from-gray-800 to-gray-600' : 'from-red-500 to-orange-500')) }} aspect-[16/9]">
                                         @if ($work->image)
                                             @if (Str::startsWith($work->image, 'http'))
                                                 <img src="{{ $work->image }}" alt="{{ $work->title }}"

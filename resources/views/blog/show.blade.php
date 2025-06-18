@@ -1,6 +1,5 @@
 <x-public-layout>
-    {{-- Menggunakan padding yang lebih responsif untuk seluruh halaman --}}
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 py-8 sm:py-8">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-8">
         <!-- Back Navigation -->
         <div class="mb-6 sm:mb-8">
             <a href="{{ route('blog.index') }}"
@@ -13,7 +12,7 @@
             </a>
         </div>
 
-        <article class="max-w-3xl mx-auto">
+        <article class="max-w-4xl mx-auto">
             <!-- Article Header -->
             <header class="mb-10">
                 <div class="flex flex-wrap items-center gap-x-6 gap-y-3 mb-6">
@@ -39,12 +38,19 @@
                         <div
                             class="w-8 h-8 bg-gray-300 rounded-full mr-3 flex items-center justify-center overflow-hidden">
                             @if ($post->user->avatar)
-                                <img src="{{ $post->user->avatar }}" alt="{{ $post->user->name }}"
-                                    class="w-full h-full object-cover">
+                                {{-- PERTAMA: Cek apakah avatar adalah URL lengkap (misal: dari login Google) --}}
+                                @if (Str::startsWith($post->user->avatar, 'http'))
+                                    <img src="{{ $post->user->avatar }}" alt="{{ $post->user->name }}"
+                                        class="w-full h-full object-cover">
+                                @else
+                                    {{-- KEDUA: Jika bukan URL, anggap itu adalah file dari storage --}}
+                                    <img src="{{ asset('storage/' . $post->user->avatar) }}"
+                                        alt="{{ $post->user->name }}" class="w-full h-full object-cover">
+                                @endif
                             @else
-                                <span class="text-xs font-semibold text-gray-600">
-                                    {{ substr($post->user->name, 0, 1) }}
-                                </span>
+                                {{-- KETIGA: Jika tidak ada avatar sama sekali, tampilkan gambar default dari public/images --}}
+                                <img src="{{ asset('images/profile.jpg') }}" alt="Default Avatar"
+                                    class="w-full h-full object-cover">
                             @endif
                         </div>
                         <span>By <a href="#"
@@ -63,7 +69,7 @@
             @if ($post->image)
                 <div class="mb-10 sm:mb-12">
                     <div
-                        class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-gray-100 to-gray-200 aspect-[16/10]">
+                        class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-gray-100 to-gray-200 aspect-[16/9]">
                         @if (Str::startsWith($post->image, 'http'))
                             <img src="{{ $post->image }}" alt="{{ $post->title }}"
                                 class="w-full h-full object-cover">

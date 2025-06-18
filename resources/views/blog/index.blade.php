@@ -1,5 +1,5 @@
 <x-public-layout>
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 py-8 sm:py-8">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-8">
         <h1 class="text-4xl sm:text-5xl font-bold text-gray-800 mb-8">Blog</h1>
 
         @if ($categories->count() > 0)
@@ -43,7 +43,7 @@
                                 <div class="lg:w-1/2">
                                     <a href="{{ route('blog.show', $post->slug) }}" class="block">
                                         <div
-                                            class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-gray-100 to-gray-200 aspect-[4/3]">
+                                            class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-gray-100 to-gray-200 aspect-[16/9]">
                                             @if (Str::startsWith($post->image, 'http'))
                                                 <img src="{{ $post->image }}" alt="{{ $post->title }}"
                                                     class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
