@@ -16,7 +16,7 @@
             <!-- Article Header -->
             <header class="mb-10">
                 <div class="flex flex-wrap items-center gap-x-6 gap-y-3 mb-6">
-                    <span class="inline-block px-3 py-1 text-xs font-semibold bg-gray-800 text-white rounded-lg">
+                    <span class="inline-block px-3 py-1 text-xs font-semibold bg-red-500 text-white rounded-lg">
                         {{ $post->created_at->format('Y') }}
                     </span>
                     <span class="text-sm text-gray-500 font-medium">

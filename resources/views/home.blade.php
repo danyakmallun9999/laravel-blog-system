@@ -43,26 +43,29 @@
                     <div class="grid md:grid-cols-3 gap-8">
                         @foreach ($recentPosts->take(3) as $post)
                             <article class="bg-white">
-                                @if ($post->image)
-                                    @if (Str::startsWith($post->image, 'http'))
-                                        <img src="{{ $post->image }}" alt="{{ $post->title }}"
-                                            class="w-full h-48 object-cover rounded-lg mb-6">
-                                    @else
-                                        <img src="{{ asset('storage/' . $post->image) }}" alt="{{ $post->title }}"
-                                            class="w-full h-48 object-cover rounded-lg mb-6 shadow-md">
+                                <a href="{{ route('blog.show', $post->slug) }}">
+                                    @if ($post->image)
+                                        @if (Str::startsWith($post->image, 'http'))
+                                            <img src="{{ $post->image }}" alt="{{ $post->title }}"
+                                                class="w-full h-48 object-cover rounded-lg mb-6">
+                                        @else
+                                            <img src="{{ asset('storage/' . $post->image) }}" alt="{{ $post->title }}"
+                                                class="w-full h-48 object-cover rounded-lg mb-6 shadow-md">
+                                        @endif
                                     @endif
-                                @endif
-                                <h3 class="text-2xl font-bold text-gray-900 mb-4 hover:text-red-500 transition-colors">
-                                    <a href="{{ route('blog.show', $post->slug) }}">{{ $post->title }}</a>
-                                </h3>
-                                <div class="flex items-center text-gray-600 text-sm mb-4 space-x-4">
-                                    <span>{{ $post->created_at->format('d M Y') }}</span>
-                                    <span>|</span>
-                                    <span>{{ $post->category->name ?? 'Design, Pattern' }}</span>
-                                </div>
-                                <p class="text-gray-700 leading-relaxed">
-                                    {{ Str::limit(strip_tags($post->content), 150) }}
-                                </p>
+                                    <h3
+                                        class="text-2xl font-bold text-gray-900 mb-4 hover:text-red-500 transition-colors">
+                                        <a href="{{ route('blog.show', $post->slug) }}">{{ $post->title }}</a>
+                                    </h3>
+                                    <div class="flex items-center text-gray-600 text-sm mb-4 space-x-4">
+                                        <span>{{ $post->created_at->format('d M Y') }}</span>
+                                        <span>|</span>
+                                        <span>{{ $post->category->name ?? 'Design, Pattern' }}</span>
+                                    </div>
+                                    <p class="text-gray-700 leading-relaxed">
+                                        {{ Str::limit(strip_tags($post->content), 150) }}
+                                    </p>
+                                </a>
                             </article>
                         @endforeach
                     </div>

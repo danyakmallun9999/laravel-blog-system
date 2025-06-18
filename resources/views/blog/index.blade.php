@@ -78,10 +78,12 @@
                                 </h2>
 
                                 <!-- Excerpt -->
-                                <p class="text-gray-600 leading-relaxed mb-6 text-base">
-                                    {!! Str::limit(strip_tags($post->content), 180) !!}
-                                </p>
-
+                                <a href="{{ route('blog.show', $post->slug) }}">
+                                    <p
+                                        class="text-gray-600 leading-relaxed mb-6 text-base hover:text-red-500 transition-colors duration-300">
+                                        {!! Str::limit(strip_tags($post->content), 180) !!}
+                                    </p>
+                                </a>
                                 <!-- Author & Date -->
                                 <div class="text-sm text-gray-500">
                                     <span>By {{ $post->user->name }}</span>
