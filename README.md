@@ -12,7 +12,7 @@ Portfolio & Blog Pribadi dengan Laravel
 
 Aplikasi ini adalah sebuah website portfolio pribadi yang terintegrasi dengan sistem blog, dibangun menggunakan framework Laravel. Proyek ini dirancang untuk menampilkan karya-karya (portfolio), memungkinkan pemilik untuk menulis dan mengelola artikel blog, serta menyediakan antarmuka admin yang aman dengan sistem otorisasi berbasis peran untuk manajemen konten.
 
-Tumpukan Teknologi (Tech Stack)
+Tech Stack
 -------------------------------
 
 *   **Framework Backend:** Laravel 11+
