@@ -38,7 +38,7 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
 
     // ==================== PENAMBAHAN OTORISASI MIDDLEWARE ====================
-    // Setiap akses ke rute, resource ini sekarang akan dicek permission-nya.
+    // Setiap akses ke rute, resource ini akan dicek permission-nya.
 
     // CRUD Kategori Blog - hanya bisa diakses oleh user dengan permission 'manage categories'
     Route::resource('categories', AdminCategoryController::class)
