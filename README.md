@@ -82,15 +82,24 @@ Pastikan semua perangkat lunak di bagian **Tumpukan Teknologi** sudah terinstal 
 
 ### 2\. Clone Repositori
 
-Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   git clone [https://github.com/danyakmallun9999/portfolio-blog.git](https://github.com/danyakmallun9999/portfolio-blog.git)  cd portfolio-blog   `
+```bash
+git clone [https://github.com/danyakmallun9999/portfolio-blog.git](https://github.com/danyakmallun9999/portfolio-blog.git)  
+cd portfolio-blog
+```
 
 ### 3\. Install Dependensi
 
-Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   # Install dependensi PHP  composer install  # Install dependensi Node.js  npm install   `
+```bash
+# Install dependensi PHP  composer install  
+# Install dependensi Node.js  npm install
+```
 
 ### 4\. Konfigurasi Environment
 
-Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   # Salin file environment contoh  cp .env.example .env  # Generate kunci aplikasi unik  php artisan key:generate   `
+```bash
+# Salin file environment contoh  cp .env.example .env  
+# Generate kunci aplikasi unik  php artisan key:generate
+```
 
 Setelah itu, buka file .env dan konfigurasikan koneksi database Anda (DB\_DATABASE, DB\_USERNAME, DB\_PASSWORD) serta APP\_URL.
 
@@ -98,7 +107,9 @@ Setelah itu, buka file .env dan konfigurasikan koneksi database Anda (DB\_DATABA
 
 Jalankan perintah berikut untuk membuat semua tabel database dan mengisinya dengan data awal (termasuk peran, hak akses, dan akun admin default):
 
-Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   php artisan migrate:fresh --seed   `
+```bash
+php artisan migrate:fresh --seed
+```
 
 *   **Akun Admin Default:**
     
@@ -111,7 +122,9 @@ Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQL
 
 Agar file yang di-upload (seperti gambar postingan) dapat diakses, jalankan:
 
-Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   php artisan storage:link   `
+```bash
+php artisan storage:link
+```
 
 ### 7\. Jalankan Server
 
@@ -143,7 +156,9 @@ Menjalankan Tes
 
 Untuk menjalankan rangkaian tes otomatis PHPUnit:
 
-Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   php artisan test   `
+```bash
+php artisan test
+```
 
 Pastikan Anda sudah membuat dan mengkonfigurasi file .env.testing untuk menggunakan database terpisah (direkomendasikan SQLite in-memory).
 
