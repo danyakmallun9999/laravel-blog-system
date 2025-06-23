@@ -7,152 +7,147 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-# Portfolio & Blog Pribadi dengan Laravel
+Portfolio & Blog Pribadi dengan Laravel
+=======================================
 
-Aplikasi ini adalah website portfolio pribadi yang terintegrasi dengan sistem blog, dibangun menggunakan framework Laravel. Proyek ini dirancang untuk menampilkan karya-karya (portfolio), memungkinkan pemilik untuk menulis dan mengelola artikel blog, serta menyediakan antarmuka admin yang aman untuk manajemen konten.
+Aplikasi ini adalah sebuah website portfolio pribadi yang terintegrasi dengan sistem blog, dibangun menggunakan framework Laravel. Proyek ini dirancang untuk menampilkan karya-karya (portfolio), memungkinkan pemilik untuk menulis dan mengelola artikel blog, serta menyediakan antarmuka admin yang aman dengan sistem otorisasi berbasis peran untuk manajemen konten.
 
-## Fitur Utama
+Tumpukan Teknologi (Tech Stack)
+-------------------------------
 
-### Tampilan Publik:
+*   **Framework Backend:** Laravel 11+
+    
+*   **Bahasa Pemrograman:** PHP 8.1+
+    
+*   **Frontend:** Tailwind CSS, Alpine.js
+    
+*   **Database:** MySQL / PostgreSQL
+    
+*   **Paket Utama:**
+    
+    *   laravel/breeze: Untuk scaffolding autentikasi dasar.
+        
+    *   spatie/laravel-permission: Untuk implementasi Role-Based Access Control (RBAC).
+        
+    *   anhskohbo/no-captcha (Rencana): Untuk implementasi Google reCAPTCHA.
+        
+*   **Alat Pengembangan:** Vite, Composer, NPM/Yarn, Git.
+    
 
-* **Home**: Profil singkat, daftar postingan blog terbaru, dan karya portfolio pilihan.
-* **Work**: Galeri proyek portfolio dengan gambar, tahun, kategori, dan deskripsi.
-* **Blog**: Daftar artikel blog dengan paginasi, filter berdasarkan kategori, dan halaman detail.
-* **Kontak**: Informasi kontak pemilik.
-* **404 Kustom**: Penanganan URL yang tidak ditemukan.
+Fitur Unggulan
+--------------
 
-### Area Admin:
+### Fitur Publik
 
-* Login admin khusus.
-* Dashboard sederhana.
-* CRUD untuk Kategori Blog.
-* CRUD untuk Postingan Blog (dengan upload gambar dan editor WYSIWYG/TinyMCE).
-* CRUD untuk Proyek Portfolio (dengan upload gambar).
+*   **Halaman Responsif:** Semua halaman (Home, Blog, Detail Post, Work, Detail Work, Kontak) dirancang agar terlihat bagus di semua perangkat.
+    
+*   **Filter & Pagination Blog:** Pengunjung dapat memfilter postingan berdasarkan kategori dan menavigasi halaman dengan mudah.
+    
+*   **Halaman Error Kustom:** Tampilan profesional untuk halaman 403, 404, 419, dan 500.
+    
 
-### Fitur Teknis:
+### Fitur Admin Panel
 
-* Slug otomatis untuk postingan dan kategori.
-* Pagination di publik dan admin.
-* Styling dengan Tailwind CSS.
-* (Opsional) Login Google & TinyMCE API Key (dinonaktifkan di UI).
+*   **Otorisasi** Berbasis **Peran (RBAC):**
+    
+    *   Sistem peran (Super Admin, Penulis Blog, Manajer Portfolio) dan hak akses yang jelas.
+        
+    *   Tampilan menu dan dasbor yang dinamis sesuai dengan hak akses pengguna.
+        
+*   **Manajemen Konten Penuh (CRUD):**
+    
+    *   Manajemen **Pengguna** (termasuk penetapan peran).
+        
+    *   Manajemen **Kategori Blog**.
+        
+    *   Manajemen **Postingan Blog** dengan editor WYSIWYG (TinyMCE) dan upload gambar.
+        
+    *   Manajemen **Proyek Portfolio**.
+        
+*   **Pengalaman Pengguna (UX) yang Ditingkatkan:**
+    
+    *   Menggunakan **Modal Konfirmasi Profesional** untuk tindakan destruktif (seperti hapus data), menggantikan alert browser bawaan.
+        
+    *   Antarmuka yang konsisten dan responsif di seluruh panel admin.
+        
 
-## Prasyarat Sistem
+Instalasi & Konfigurasi Lokal
+-----------------------------
 
-* PHP >= 8.1
-* Composer
-* Node.js & NPM/Yarn
-* Database: MySQL (direkomendasikan), PostgreSQL, SQLite
-* Web server: Apache/Nginx (XAMPP, Laragon, Valet, Sail)
-* Ekstensi PHP: BCMath, Ctype, cURL, DOM, Fileinfo, JSON, Mbstring, OpenSSL, PCRE, PDO, Tokenizer, XML
-* Git
+Ikuti langkah-langkah berikut untuk menjalankan proyek ini di lingkungan lokal Anda.
 
-## Instalasi Lokal
+### 1\. Prasyarat
 
-1. **Clone repositori**
+Pastikan semua perangkat lunak di bagian **Tumpukan Teknologi** sudah terinstal di sistem Anda.
 
-```bash
-git clone https://github.com/danyakmallun9999/portfolio-blog.git
-cd portfolio-blog
-```
+### 2\. Clone Repositori
 
-2. **Install dependensi PHP**
+Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   git clone [https://github.com/danyakmallun9999/portfolio-blog.git](https://github.com/danyakmallun9999/portfolio-blog.git)  cd portfolio-blog   `
 
-```bash
-composer install
-```
+### 3\. Install Dependensi
 
-3. **Salin file environment & konfigurasi**
+Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   # Install dependensi PHP  composer install  # Install dependensi Node.js  npm install   `
 
-```bash
-cp .env.example .env
-```
+### 4\. Konfigurasi Environment
 
-Edit file `.env` untuk koneksi database dan `APP_URL`.
+Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   # Salin file environment contoh  cp .env.example .env  # Generate kunci aplikasi unik  php artisan key:generate   `
 
-4. **Generate APP\_KEY**
+Setelah itu, buka file .env dan konfigurasikan koneksi database Anda (DB\_DATABASE, DB\_USERNAME, DB\_PASSWORD) serta APP\_URL.
 
-```bash
-php artisan key:generate
-```
+### 5\. Setup Database & Data Awal
 
-5. **Migrasi database**
+Jalankan perintah berikut untuk membuat semua tabel database dan mengisinya dengan data awal (termasuk peran, hak akses, dan akun admin default):
 
-```bash
-php artisan migrate
-```
+Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   php artisan migrate:fresh --seed   `
 
-6. **Symbolic link untuk storage**
+*   **Akun Admin Default:**
+    
+    *   **Email:** admin@example.com
+        
+    *   **Password:** password_(Segera_ ganti password ini setelah login pertama _kali!)_
+        
 
-```bash
-php artisan storage:link
-```
+### 6\. Buat Symbolic Link untuk Storage
 
-7. **Install dependensi frontend**
+Agar file yang di-upload (seperti gambar postingan) dapat diakses, jalankan:
 
-```bash
-npm install
-# atau
-yarn install
-```
+Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   php artisan storage:link   `
 
-8. **Kompilasi aset frontend**
+### 7\. Jalankan Server
 
-```bash
-npm run dev
-```
+Anda perlu menjalankan dua server secara bersamaan di dua terminal terpisah.
 
-9. **Seed database (data awal)**
+*   npm run dev
+    
+*   php artisan serve
+    
 
-```bash
-php artisan db:seed
-```
+Aplikasi sekarang dapat diakses di http://localhost:8000 (atau URL yang ditampilkan oleh php artisan serve).
 
-Admin Default:
+Sistem Otorisasi (Roles & Permissions)
+--------------------------------------
 
-* Email: `admin@example.com`
-* Password: `password`
+Proyek ini menggunakan paket spatie/laravel-permission untuk mengelola hak akses. Berikut adalah peran default yang dibuat oleh seeder:
 
-10. **Jalankan server lokal**
+*   **Super Admin:** Memiliki akses penuh ke semua fitur di panel admin.
+    
+*   **Penulis Blog (Blog Writer):** Hanya dapat mengakses dan mengelola postingan blog (manage posts).
+    
+*   **Manajer Portfolio (Work Manager):** Hanya dapat mengakses dan mengelola proyek portfolio (manage works).
+    
 
-```bash
-php artisan serve
-```
+Anda dapat mengelola pengguna dan menetapkan peran mereka melalui menu "Users" setelah login sebagai Super Admin.
 
-Akses di `http://localhost:8000`
+Menjalankan Tes
+---------------
 
-## Struktur Direktori Penting
+Untuk menjalankan rangkaian tes otomatis PHPUnit:
 
-* `app/Http/Controllers/`
-* `app/Models/`
-* `config/`
-* `resources/views/`
-* `resources/js/`
-* `resources/css/`
-* `routes/`
-* `database/migrations/`
-* `database/seeders/`
-* `public/`
-* `.env`
-* `composer.json`
-* `package.json`
-* `tailwind.config.js`
-* `vite.config.js`
+Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   php artisan test   `
 
-## Fitur Dinonaktifkan
+Pastikan Anda sudah membuat dan mengkonfigurasi file .env.testing untuk menggunakan database terpisah (direkomendasikan SQLite in-memory).
 
-* Registrasi publik
-* Login Google (aktifkan kembali di `.env`, `routes/web.php`, dan UI)
+Lisensi
+-------
 
-## Menjalankan Tes
-
-```bash
-php artisan test
-# atau
-./vendor/bin/phpunit
-```
-
-Gunakan database testing terpisah (SQLite in-memory).
-
-## Lisensi
-
-Proyek ini dibuat untuk portfolio pribadi. 
+Proyek ini dikembangkan untuk keperluan portfolio pribadi.
