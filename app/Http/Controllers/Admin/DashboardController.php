@@ -14,11 +14,11 @@ class DashboardController extends Controller
     public function index(): View
     {
         $stats = [
-            'total_posts' => Post::count(),
-            'total_works' => Work::count(),
-            'total_categories' => Category::count(),
-            'total_users' => User::count(),
+            "total_posts" => Post::count(),
+            "total_works" => Work::count(),
+            "total_categories" => Category::count(),
+            "total_users" => User::count(),
         ];
-        return view('admin.dashboard', compact('stats'));
+        return view("admin.dashboard", compact("stats"));
     }
 }

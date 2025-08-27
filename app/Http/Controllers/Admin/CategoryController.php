@@ -13,53 +13,64 @@ class CategoryController extends Controller
     public function index(): View
     {
         $categories = Category::latest()->paginate(10);
-        return view('admin.categories.index', compact('categories'));
+        return view("admin.categories.index", compact("categories"));
     }
 
     public function create(): View
     {
-        return view('admin.categories.create');
+        return view("admin.categories.create");
     }
 
     public function store(Request $request): RedirectResponse
     {
         $validated = $request->validate([
-            'name' => 'required|string|max:255|unique:categories,name',
+            "name" => "required|string|max:255|unique:categories,name",
             // 'slug' => 'nullable|string|max:255|unique:categories,slug', // Slug dibuat otomatis oleh model
         ]);
 
-    
         Category::create($validated);
 
-        return redirect()->route('admin.categories.index')->with('success', 'Kategori berhasil ditambahkan.');
+        return redirect()
+            ->route("admin.categories.index")
+            ->with("success", "Kategori berhasil ditambahkan.");
     }
-
-
 
     public function edit(Category $category): View
     {
-        return view('admin.categories.edit', compact('category'));
+        return view("admin.categories.edit", compact("category"));
     }
 
-    public function update(Request $request, Category $category): RedirectResponse
-    {
+    public function update(
+        Request $request,
+        Category $category,
+    ): RedirectResponse {
         $validated = $request->validate([
-            'name' => 'required|string|max:255|unique:categories,name,' . $category->id,
+            "name" =>
+                "required|string|max:255|unique:categories,name," .
+                $category->id,
             // 'slug' => 'nullable|string|max:255|unique:categories,slug,' . $category->id, // Slug diupdate otomatis
         ]);
 
         $category->update($validated);
 
-        return redirect()->route('admin.categories.index')->with('success', 'Kategori berhasil diperbarui.');
+        return redirect()
+            ->route("admin.categories.index")
+            ->with("success", "Kategori berhasil diperbarui.");
     }
 
     public function destroy(Category $category): RedirectResponse
     {
-    
         if ($category->posts()->count() > 0) {
-            return redirect()->route('admin.categories.index')->with('error', 'Kategori tidak bisa dihapus karena masih digunakan oleh post.');
+            return redirect()
+                ->route("admin.categories.index")
+                ->with(
+                    "error",
+                    "Kategori tidak bisa dihapus karena masih digunakan oleh post.",
+                );
         }
         $category->delete();
-        return redirect()->route('admin.categories.index')->with('success', 'Kategori berhasil dihapus.');
+        return redirect()
+            ->route("admin.categories.index")
+            ->with("success", "Kategori berhasil dihapus.");
     }
 }
