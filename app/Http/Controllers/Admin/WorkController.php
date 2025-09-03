@@ -1,18 +1,20 @@
 <?php
+
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Work;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
-use Illuminate\Http\RedirectResponse;
 
 class WorkController extends Controller
 {
     public function index(): View
     {
         $works = Work::latest()->paginate(10);
+
         return view('admin.works.index', compact('works'));
     }
 
@@ -26,7 +28,7 @@ class WorkController extends Controller
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'required|string',
-            'year' => 'required|digits:4|integer|min:1900|max:'.(date('Y')+5),
+            'year' => 'required|digits:4|integer|min:1900|max:'.(date('Y') + 5),
             'category' => 'required|string|max:255',
             'project_url' => 'nullable|url',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
@@ -38,6 +40,7 @@ class WorkController extends Controller
         }
 
         Work::create($validated);
+
         return redirect()->route('admin.works.index')->with('success', 'Projek berhasil ditambahkan.');
     }
 
@@ -56,7 +59,7 @@ class WorkController extends Controller
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'required|string',
-            'year' => 'required|digits:4|integer|min:1900|max:'.(date('Y')+5),
+            'year' => 'required|digits:4|integer|min:1900|max:'.(date('Y') + 5),
             'category' => 'required|string|max:255',
             'project_url' => 'nullable|url',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
@@ -71,6 +74,7 @@ class WorkController extends Controller
         }
 
         $work->update($validated);
+
         return redirect()->route('admin.works.index')->with('success', 'Projek berhasil diperbarui.');
     }
 
@@ -80,6 +84,7 @@ class WorkController extends Controller
             Storage::disk('public')->delete($work->image);
         }
         $work->delete();
+
         return redirect()->route('admin.works.index')->with('success', 'Projek berhasil dihapus.');
     }
 }

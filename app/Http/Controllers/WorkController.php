@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Work;
-use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class WorkController extends Controller
@@ -11,14 +10,12 @@ class WorkController extends Controller
     public function index(): View
     {
         $works = Work::latest()->paginate(9); // Ambil semua works, urutkan terbaru, dengan paginasi
+
         return view('work.index', compact('works'));
     }
 
     /**
      * Menampilkan halaman detail untuk sebuah karya/proyek.
-     *
-     * @param  \App\Models\Work  $work
-     * @return \Illuminate\View\View
      */
     public function show(Work $work): View
     {

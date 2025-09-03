@@ -1,18 +1,18 @@
 <?php
-// routes/web.php
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\WorkController as PublicWorkController;
-use App\Http\Controllers\PostController as PublicPostController;
-use App\Http\Controllers\ContactController;
-use App\Http\Controllers\ProfileController;
 
-// Admin Controllers
-use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
+// routes/web.php
 use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
+use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\PostController as AdminPostController;
-use App\Http\Controllers\Admin\WorkController as AdminWorkController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
+use App\Http\Controllers\Admin\WorkController as AdminWorkController;
+use App\Http\Controllers\ContactController;
+// Admin Controllers
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PostController as PublicPostController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\WorkController as PublicWorkController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,7 +31,6 @@ Route::get('/contact', [ContactController::class, 'index'])->name('contact.index
 Route::get('/dashboard', function () {
     return redirect()->route('admin.dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
-
 
 // Grup Route untuk Admin (yang memerlukan login)
 Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(function () {
@@ -55,7 +54,7 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
 
     // CRUD Users - hanya bisa diakses oleh user dengan permission 'manage users'
     Route::resource('users', AdminUserController::class)->except(['show'])->middleware(['can:manage users']);
-    
+
     // ================== AKHIR DARI PENAMBAHAN ==================
 
     // Rute profil tetap dapat diakses oleh semua user yang sudah login

@@ -1,15 +1,15 @@
 <?php
 
 // app/Http/Controllers/Auth/SocialiteController.php
+
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Laravel\Socialite\Facades\Socialite;
 use Exception;
-use Illuminate\Support\Str; // Untuk generate password acak jika diperlukan
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
+use Laravel\Socialite\Facades\Socialite; // Untuk generate password acak jika diperlukan
 
 class SocialiteController extends Controller
 {

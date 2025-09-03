@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
-use App\Models\User; // Import model User
+use Illuminate\Support\Facades\Hash; // Import model User
 
 class UserSeeder extends Seeder
 {

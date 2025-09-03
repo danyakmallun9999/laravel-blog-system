@@ -4,22 +4,21 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use Illuminate\Http\Request;
-use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Spatie\Permission\Models\Role;
 use Illuminate\Validation\Rules;
-use Illuminate\Support\Arr;
+use Illuminate\View\View;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
     public function index(): View
     {
         $users = User::with('roles')
-                    ->where('id', '!=', auth()->id())
-                    ->latest()
-                    ->paginate(10);
+            ->where('id', '!=', auth()->id())
+            ->latest()
+            ->paginate(10);
 
         return view('admin.users.index', compact('users'));
     }
@@ -27,6 +26,7 @@ class UserController extends Controller
     public function create(): View
     {
         $roles = Role::where('name', '!=', 'Super Admin')->pluck('name', 'name');
+
         return view('admin.users.create', compact('roles'));
     }
 
@@ -36,7 +36,7 @@ class UserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'roles' => ['required', 'array']
+            'roles' => ['required', 'array'],
         ]);
 
         $user = User::create([
@@ -54,6 +54,7 @@ class UserController extends Controller
     {
         $roles = Role::where('name', '!=', 'Super Admin')->pluck('name', 'name');
         $userRoles = $user->getRoleNames()->toArray();
+
         return view('admin.users.edit', compact('user', 'roles', 'userRoles'));
     }
 
@@ -63,7 +64,7 @@ class UserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,'.$user->id],
             'password' => ['nullable', 'confirmed', Rules\Password::defaults()],
-            'roles' => ['required', 'array']
+            'roles' => ['required', 'array'],
         ]);
 
         $input = $request->except('password', 'password_confirmation');
@@ -75,7 +76,6 @@ class UserController extends Controller
 
         return redirect()->route('admin.users.index')->with('success', 'User updated successfully.');
     }
-
 
     /**
      * Remove the specified resource from storage.

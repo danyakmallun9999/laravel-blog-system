@@ -1,27 +1,29 @@
 <?php
+
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Post;
 use App\Models\Category;
+use App\Models\Post;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
 use Illuminate\View\View;
-use Illuminate\Http\RedirectResponse;
 
 class PostController extends Controller
 {
     public function index(): View
     {
         $posts = Post::with('category', 'user')->latest()->paginate(10);
+
         return view('admin.posts.index', compact('posts'));
     }
 
     public function create(): View
     {
         $categories = Category::orderBy('name')->get();
+
         return view('admin.posts.create', compact('categories'));
     }
 
@@ -36,7 +38,6 @@ class PostController extends Controller
         ]);
 
         $validated['user_id'] = Auth::id();
-    
 
         if ($request->hasFile('image')) {
             $path = $request->file('image')->store('posts_images', 'public');
@@ -51,12 +52,14 @@ class PostController extends Controller
     public function show(Post $post): View
     {
         $post->load('category', 'user');
+
         return view('admin.posts.show', compact('post'));
     }
 
     public function edit(Post $post): View
     {
         $categories = Category::orderBy('name')->get();
+
         return view('admin.posts.edit', compact('post', 'categories'));
     }
 
@@ -89,6 +92,7 @@ class PostController extends Controller
             Storage::disk('public')->delete($post->image);
         }
         $post->delete();
+
         return redirect()->route('admin.posts.index')->with('success', 'Post berhasil dihapus.');
     }
 }

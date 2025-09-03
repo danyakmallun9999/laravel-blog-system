@@ -1,8 +1,9 @@
 <?php
+
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Post;
-use App\Models\Category; 
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -29,6 +30,7 @@ class PostController extends Controller
     public function show(Post $post): View
     {
         $post->load('category', 'user');
+
         return view('blog.show', compact('post'));
     }
 }

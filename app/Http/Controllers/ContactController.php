@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -12,11 +13,12 @@ class ContactController extends Controller
             'email' => 'danyclasher9999@gmail.com',
             'phone' => '+62 812 3456 7890',
             'socials' => [
-                ['name' => 'GitHub', 'url' => 'https://github.com/danyakmallun9999', 'icon' => 'fab fa-github'], 
+                ['name' => 'GitHub', 'url' => 'https://github.com/danyakmallun9999', 'icon' => 'fab fa-github'],
                 ['name' => 'LinkedIn', 'url' => 'https://www.linkedin.com/in/dany-akmallun-ni-am-786580230/', 'icon' => 'fab fa-linkedin'],
                 ['name' => 'Twitter', 'url' => 'https://twitter.com/danyakmallun', 'icon' => 'fab fa-twitter'],
-            ]
+            ],
         ];
+
         return view('contact.index', compact('contactInfo'));
     }
 

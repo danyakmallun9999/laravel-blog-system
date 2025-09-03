@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Seeder;
+use App\Models\Category;
 use App\Models\Post;
 use App\Models\User;
-use App\Models\Category;
+use Illuminate\Database\Seeder;
 
 class PostSeeder extends Seeder
 {
@@ -17,11 +17,13 @@ class PostSeeder extends Seeder
         // Pastikan ada minimal 1 user dan beberapa kategori sebelum menjalankan ini
         if (User::count() == 0) {
             $this->command->warn('No users found. Please run UserSeeder first or ensure users exist.');
+
             // $this->call(UserSeeder::class); // Alternatif: panggil UserSeeder dari sini
             return;
         }
         if (Category::count() == 0) {
             $this->command->warn('No categories found. Please run CategorySeeder first or ensure categories exist.');
+
             // $this->call(CategorySeeder::class); // Alternatif
             return;
         }

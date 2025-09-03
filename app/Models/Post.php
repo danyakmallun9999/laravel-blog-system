@@ -43,7 +43,7 @@ class Post extends Model
                 $originalSlug = $post->slug;
                 $count = 1;
                 while (static::where('slug', $post->slug)->exists()) {
-                    $post->slug = "{$originalSlug}-" . $count++;
+                    $post->slug = "{$originalSlug}-".$count++;
                 }
             }
         });
@@ -56,12 +56,11 @@ class Post extends Model
                 $count = 1;
                 // Pastikan slug unik, kecuali untuk dirinya sendiri
                 while (static::where('slug', $post->slug)->where('id', '!=', $post->id)->exists()) {
-                    $post->slug = "{$originalSlug}-" . $count++;
+                    $post->slug = "{$originalSlug}-".$count++;
                 }
             }
         });
     }
-
 
     // Untuk route model binding menggunakan slug
     public function getRouteKeyName()

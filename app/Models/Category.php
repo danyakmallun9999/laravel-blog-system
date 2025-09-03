@@ -1,6 +1,7 @@
 <?php
 
 // app/Models/Category.php
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -12,7 +13,7 @@ class Category extends Model
 {
     use HasFactory;
 
-    protected $fillable = ["name", "slug"];
+    protected $fillable = ['name', 'slug'];
 
     // Relasi: Satu kategori memiliki banyak post
     public function posts(): HasMany
@@ -26,12 +27,12 @@ class Category extends Model
         parent::boot();
         static::creating(function ($category) {
             if (empty($category->slug)) {
-                $category->slug = Str::slug($category->name, "-");
+                $category->slug = Str::slug($category->name, '-');
             }
         });
         static::updating(function ($category) {
-            if (empty($category->slug) || $category->isDirty("name")) {
-                $category->slug = Str::slug($category->name, "-");
+            if (empty($category->slug) || $category->isDirty('name')) {
+                $category->slug = Str::slug($category->name, '-');
             }
         });
     }
@@ -39,6 +40,6 @@ class Category extends Model
     // Untuk route model binding menggunakan slug
     public function getRouteKeyName()
     {
-        return "slug";
+        return 'slug';
     }
 }
